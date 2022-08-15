@@ -1,0 +1,16 @@
+{% for product in products %}
+<div class="card" style="width: 18rem;">
+{% if product.category == 'Jaa'  %}
+    <div class="card-body">
+        <h5 class="card-title">{{product.model}}</h5>
+        <p class="card-text">Precio: {{product.price}}</p>
+        <p class="card-text">coulor: {{product.coulor}}</p>
+        <p class="card-text">description: {{product.description}}</p>
+        <p class="card-text">Stock: {{product.stock}}</p>
+        <p class="card-text">Stock: {{product.category}}</p>
+        <img src="{{ product.img.url }}" alt="">
+        
+    </div>
+    {% endif %}
+</div>
+{% endfor %}
