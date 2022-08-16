@@ -23,11 +23,12 @@
                             <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a> -->
                         <ul class="collapse show list-unstyled pl-3">
+                            
                             {% if id_category %}
-                            {% for categoria in id_category %}
-                            <li><a class="text-decoration-none" href="/Productos/Shop_Category/{{categoria.id}}">{{categoria.category}}</a></li>
-                            {% endfor %}
-                              {% endif %}
+                                {% for categoria in id_category %}
+                                    <li><a class="text-decoration-none" href="/Productos/Shop_Category/{{categoria.id}}">{{categoria.category}}</a></li>
+                                {% endfor %}
+                            {% endif %}
                         </ul>
                     </li>
                   <!--   <li class="pb-3">
@@ -78,7 +79,7 @@
                         </div>
                     </div>
                     {% endfor %}
-                              {% endif %}
+                    {% endif %}
                 </div>
             </div>
         </div>

@@ -33,11 +33,11 @@ def create_product(request):
 
 def Shop_Category(request, pk):
     if request.method == 'GET':
-        id_category = Category.objects.get(pk=pk)
-        products_id=Product.objects.all()
+        category_id = Category.objects.filter(pk=pk)
+        products_id=Product.objects.filter(category_id=pk)
         print(len(products_id))
         context = {
-            'id_category':id_category,
+            'category_id':category_id,
             'products_id':products_id
         }
         return render(request, 'Productos/Shop_Category.html', context=context)
