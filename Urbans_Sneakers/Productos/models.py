@@ -2,6 +2,7 @@ from tkinter import CASCADE
 from django.db import models
 class Category(models.Model):
     category=models.CharField(max_length=40)
+    img_category=models.ImageField(null=True, upload_to='img_Category/')
     def __str__(self):
         return self.category
 

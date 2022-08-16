@@ -1,0 +1,10 @@
+{% load static %}
+    {% for categoria in object_list %}
+    <div class="row">
+        <div class="col-12 col-md-4 p-5 mt-3">
+            <a href="/Productos/Shop_Category/{{categoria.id}}"><img src='{{ categoria.img_category.url }}' class="rounded-circle img-fluid border"></a>
+            <h5 class="text-center mt-3 mb-3">{{categoria.category}}</h5>
+            <p class="text-center"><a href="/Productos/Shop_Category/{{categoria.id}}" class="btn btn-success">Go Shop</a></p>
+        </div>
+    </div>
+    {% endfor %}

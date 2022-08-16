@@ -1,10 +1,5 @@
-
 from django import forms
 from .models import Category
-
-
-
-
 
 class Formulario_Product(forms.Form):
     category=forms.ModelChoiceField(label='Categoria', queryset=Category.objects.all())

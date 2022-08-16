@@ -1,3 +1,6 @@
+from itertools import product
+from multiprocessing import context
+from unicodedata import category
 from django.shortcuts import render,redirect
 from django.views.generic import ListView, DetailView, CreateView, DeleteView
 from Productos.forms import Formulario_Product
@@ -19,21 +22,25 @@ def create_product(request):
                 img = form.cleaned_data['img'],
             )
             
-            return redirect(list_products)
+            return redirect(Shop_Category)
 
     elif request.method == 'GET':
         form = Formulario_Product()
         context = {'form':form}
         return render(request, 'Productos/create_product.html', context=context)
 
+#---------------------------------------------------------------------------------------
 
-def list_products(request):
-    products = Product.objects.all() #Trae todos
-    context = {
-        'products':products
-    }
-    return render(request, 'Productos/list_products.html', context=context)
-
+def Shop_Category(request, pk):
+    if request.method == 'GET':
+        id_category = Category.objects.get(pk=pk)
+        products_id=Product.objects.all()
+        print(len(products_id))
+        context = {
+            'id_category':id_category,
+            'products_id':products_id
+        }
+        return render(request, 'Productos/Shop_Category.html', context=context)
 
 class Create_Category(CreateView):
     model = Category
@@ -41,3 +48,6 @@ class Create_Category(CreateView):
     fields = '__all__'
     success_url = '/Productos/create_product/'
 
+class List_Category(ListView):
+    model = Category
+    template_name = 'Productos/List_Category.html'
