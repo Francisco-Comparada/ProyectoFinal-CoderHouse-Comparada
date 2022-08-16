@@ -11,7 +11,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',index),
     path('shop/',shop),
+    path('users/', include('users.urls')),
 
-     path('Productos/', include('Productos.urls')),#incluye todas las url que estan en sneakers
+    path('Productos/', include('Productos.urls')),#incluye todas las url que estan en sneakers
 ]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

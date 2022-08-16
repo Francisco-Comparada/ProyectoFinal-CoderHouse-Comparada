@@ -48,11 +48,6 @@ class Create_Category(CreateView):
     fields = '__all__'
     success_url = '/Productos/create_product/'
 
-class List_Category(ListView):
-    model = Category
-    template_name = 'Productos/List_Category.html'
-
-
 def Shop_single(request, pk):
     if request.method == 'GET':
         product = Product.objects.get(pk=pk)
