@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.forms import AuthenticationForm
 
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, authenticate
 
 from users.forms import User_registration_form
 
@@ -18,7 +18,6 @@ def login_request(request):
 
             if user is not None:
                 login(request, user)
-                
                 context = {'message':f'Bienvenido {username}!! :D'}
                 return render(request, 'General/index.html', context = context)
 
@@ -34,7 +33,7 @@ def register(request):
         form = User_registration_form(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('login')
+            return redirect(login_request)
         else:
             context = {'errors':form.errors}
             form = User_registration_form()

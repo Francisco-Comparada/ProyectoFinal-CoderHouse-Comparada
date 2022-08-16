@@ -80,6 +80,29 @@ https://templatemo.com/tm-559-zay-shop
                         </li>
                     </ul>
                 </div>
+                <div class="navbar align-self-center d-flex">
+                    <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+                        {% if request.user.is_authenticated %}
+                             
+                       
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">{{ request.user.username }} </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/users/logout/">Logout  </a>
+                                </li>
+                                
+                        {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="/users/login/">Login </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/users/register/">Register  </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                {% endif %}
                 
                 <div class="navbar align-self-center d-flex">
                     <div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
@@ -93,14 +116,15 @@ https://templatemo.com/tm-559-zay-shop
                     <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#templatemo_search">
                         <i class="fa fa-fw fa-search text-dark mr-2"></i>
                     </a>
+                   
+
+
                     <a class="nav-icon position-relative text-decoration-none" href="#">
                         <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
                         <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
                     </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="#">
-                        <i class="fa fa-fw fa-user text-dark mr-3"></i>
-                        <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span>
-                    </a>
+              
+
                 </div>
             </div>
 
