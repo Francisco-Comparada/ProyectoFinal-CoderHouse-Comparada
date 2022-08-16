@@ -1,18 +1,18 @@
-from unicodedata import category
+from tkinter import CASCADE
 from django.db import models
-categories=(
-    ('Jordans','Jordans'),
-    ('Air Force','Air Force'),
-    ('Accesorio','Accesorio'),
-    )
+class Category(models.Model):
+    category=models.CharField(max_length=40)
+    def __str__(self):
+        return self.category
+
+    
 class Product(models.Model):
-    category=models.CharField(max_length=40,choices=categories)
+    category=models.ForeignKey('Category',on_delete=models.CASCADE)
     model=models.CharField(max_length=40)
     price=models.IntegerField()
     coulor=models.CharField(max_length=40,null=True,blank=True)
     description=models.CharField(max_length=400,null=True,blank=True)
     stock=models.IntegerField(null=True)
     img= models.ImageField(null=True, upload_to='img_Product/')
+    
 
-def __str__(self):
-        return self.model

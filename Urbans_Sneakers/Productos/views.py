@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
+from django.views.generic import ListView, DetailView, CreateView, DeleteView
 from Productos.forms import Formulario_Product
-from Productos.models import Product
+from Productos.models import Product,Category
 
 def create_product(request):
     
@@ -32,3 +33,11 @@ def list_products(request):
         'products':products
     }
     return render(request, 'Productos/list_products.html', context=context)
+
+
+class Create_Category(CreateView):
+    model = Category
+    template_name = 'Productos/create_Category.html'
+    fields = '__all__'
+    success_url = '/Productos/create_product/'
+
