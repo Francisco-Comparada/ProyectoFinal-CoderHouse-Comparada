@@ -51,3 +51,22 @@ class Create_Category(CreateView):
 class List_Category(ListView):
     model = Category
     template_name = 'Productos/List_Category.html'
+
+
+def Shop_single(request, pk):
+    if request.method == 'GET':
+        product = Product.objects.get(pk=pk)
+        context = {'product':product}
+        return render(request, 'Productos/Shop_single.html', context=context)
+        #para cuando use el boton buy o add to cart
+    elif request.method == 'POST':
+        product = Product.objects.get(pk=pk)
+        return redirect('Productos/shop.html')
+
+def search_products(request):
+    search = request.GET['search']
+    product =Product.objects.filter(model__icontains=search)
+    context = {
+        'product': product
+    }
+    return render(request, 'Productos/search_products.html', context=context)
