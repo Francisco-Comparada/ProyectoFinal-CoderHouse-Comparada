@@ -65,8 +65,8 @@ def Shop_single(request, pk):
 
 def search_products(request):
     search = request.GET['search']
-    product =Product.objects.filter(model__icontains=search)
+    products =Product.objects.filter(model__icontains=search)
     context = {
-        'product': product
+        'products': products
     }
     return render(request, 'Productos/search_products.html', context=context)
