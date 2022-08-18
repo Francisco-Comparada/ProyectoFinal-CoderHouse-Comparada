@@ -1,6 +1,7 @@
 {% extends 'General/index.html' %}
 
 {% block base %}
+
 <form action="" method="POST">
 {% csrf_token %}
 
@@ -10,11 +11,13 @@
 
     </table>
 
-    <p><input type="submit" value="Registrate"></p>
+    <p><input type="submit" value="Iniciar sesion"></p>
 
     </form>
+
     {% if error %}
         <p style="color:red;">{{error}}</p>
     {% endif %}
+
 
 {% endblock %}

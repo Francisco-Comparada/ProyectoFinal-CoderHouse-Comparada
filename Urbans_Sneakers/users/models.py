@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class User_profile(models.Model):
     user = models.OneToOneField('auth.User', on_delete=models.CASCADE, related_name='profile')
     phone = models.CharField(max_length=20, blank=True)
@@ -8,4 +9,3 @@ class User_profile(models.Model):
 
     def __str__(self):
         return self.user.username + ' - profile'
-

@@ -83,15 +83,19 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="navbar align-self-center d-flex">
                     <ul class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
                         {% if request.user.is_authenticated %}
-                             
-                       
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">{{ request.user.username }} </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/users/logout/">Logout  </a>
-                                </li>
-                                
+                        {% if request.user.profile.image.url %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">
+                                    <img width="45" height="45" src= '{{ request.user.profile.image.url }}' alt='imagen de {{ request.user.username }}'>{{ request.user.username }} </a>
+                            </li>
+                            {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"> {{ request.user.username }} </a>
+                            </li>
+                            {% endif %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/users/logout/">Logout  </a>
+                            </li>                          
                         {% else %}
                         <li class="nav-item">
                             <a class="nav-link" href="/users/login/">Login </a>
@@ -101,7 +105,6 @@ https://templatemo.com/tm-559-zay-shop
                         </li>
                     </ul>
                 </div>
-                
                 {% endif %}
                 
                 <div class="navbar align-self-center d-flex">
@@ -162,7 +165,7 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src='{% static "img/apple_icon.png" %}' alt="">
+                            <img class="" src='{% static "img/apple_icon.png" %}' alt="">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left align-self-center">
@@ -181,7 +184,7 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src='{% static "img/Nike_Air_Jordan.png" %}' alt="">
+                            <img class="" src='{% static "img/Nike_Air_Jordan.png" %}' alt="">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
@@ -199,7 +202,7 @@ https://templatemo.com/tm-559-zay-shop
                 <div class="container">
                     <div class="row p-5">
                         <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="img-fluid" src='{% static "img/Nike_Air_Force.png" %}' alt="">
+                            <img class="" src='{% static "img/Nike_Air_Force.png" %}' alt="">
                         </div>
                         <div class="col-lg-6 mb-0 d-flex align-items-center">
                             <div class="text-align-left">
@@ -236,7 +239,7 @@ https://templatemo.com/tm-559-zay-shop
             {% if id_category %}
             {% for categoria in id_category %}
             <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="/Productos/Shop_Category/{{categoria.id}}"><img src='{{ categoria.img_category.url }}' class="rounded-circle img-fluid border"></a>
+                <a href="/Productos/Shop_Category/{{categoria.id}}"><img src='{{ categoria.img_category.url }}' class="rounded-circle  border"></a>
                 <h5 class="text-center mt-3 mb-3">{{categoria.category}}</h5>
                 <p class="text-center"><a href="/Productos/Shop_Category/{{categoria.id}}" class="btn btn-success">Go Shop</a></p>
             </div>

@@ -1,13 +1,13 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.shortcuts import render,redirect
 from django.contrib.auth.forms import AuthenticationForm
-
-from django.contrib.auth import login, authenticate
-
+from django.contrib.auth import login, logout, authenticate
 from users.forms import User_registration_form
+from django.http import HttpResponse
 
 
 def login_request(request):
+
+
     if request.method == 'POST':
         form = AuthenticationForm(request=request, data=request.POST)
         if form.is_valid():
@@ -28,12 +28,15 @@ def login_request(request):
         form = AuthenticationForm()
     return render(request, 'users/login.html', {'form': form})
 
+
+
+
 def register(request):
     if request.method == 'POST':
         form = User_registration_form(request.POST)
         if form.is_valid():
             form.save()
-            return redirect(login_request)
+            return redirect('login')
         else:
             context = {'errors':form.errors}
             form = User_registration_form()
@@ -44,6 +47,8 @@ def register(request):
         form = User_registration_form()
         return render(request, 'users/register.html', {'form': form})
 
+
+
 def show_profile(request):
     if request.user.is_authenticated:
-        return HttpResponse(request.user.profile.phone)
+        return HttpResponse(request.user.profile.image.url)
