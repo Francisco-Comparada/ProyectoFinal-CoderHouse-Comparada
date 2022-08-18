@@ -9,3 +9,5 @@ class Formulario_Product(forms.Form):
     description=forms.CharField(max_length=400)
     stock=forms.IntegerField()
     img= forms.ImageField()
+
+    

@@ -6,8 +6,6 @@ from django.http import HttpResponse
 from users.models import User_profile
 
 def login_request(request):
-
-
     if request.method == 'POST':
         form = AuthenticationForm(request=request, data=request.POST)
         if form.is_valid():
@@ -53,7 +51,7 @@ def show_profile(request):
     if request.user.is_authenticated:
         return HttpResponse(request.user.profile.image.url)
 
-
+# poner login request que solo el usuario pueda verve su propio perfil y armar bien el template 
 def profile(request, pk):
     if request.method == 'GET':
         profile = User_profile.objects.get(pk=pk)
