@@ -48,6 +48,7 @@ class Create_Category(CreateView):
     fields = '__all__'
     success_url = '/Productos/create_product/'
 
+# poner login request que solo el usuario pueda verve su propio perfil y armar bien el template 
 def Shop_single(request, pk):
     if request.method == 'GET':
         product = Product.objects.get(pk=pk)
