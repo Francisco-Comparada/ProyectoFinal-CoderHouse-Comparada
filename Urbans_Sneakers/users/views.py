@@ -3,7 +3,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from users.forms import User_registration_form
 from django.http import HttpResponse
-
+from users.models import User_profile
 
 def login_request(request):
 
@@ -52,3 +52,14 @@ def register(request):
 def show_profile(request):
     if request.user.is_authenticated:
         return HttpResponse(request.user.profile.image.url)
+
+
+def profile(request, pk):
+    if request.method == 'GET':
+        profile = User_profile.objects.get(pk=pk)
+        context = {'profile':profile}
+        return render(request, 'users/profile.html', context=context)
+        #para cuando use el boton buy o add to cart
+    elif request.method == 'POST':
+        profile = profile.objects.get(pk=pk)
+        return redirect('General/index.html')

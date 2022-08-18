@@ -2,7 +2,7 @@ from itertools import product
 from multiprocessing import context
 from unicodedata import category
 from django.shortcuts import render,redirect
-from django.views.generic import ListView, DetailView, CreateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, DeleteView,UpdateView
 from Productos.forms import Formulario_Product
 from Productos.models import Product,Category
 
