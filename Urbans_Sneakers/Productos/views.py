@@ -1,13 +1,15 @@
 from itertools import product
 from multiprocessing import context
+from pickle import NONE
 from unicodedata import category
 from django.shortcuts import render,redirect
 from django.views.generic import ListView, DetailView, CreateView, DeleteView,UpdateView
 from Productos.forms import Formulario_Product
 from Productos.models import Product,Category
 from django.contrib.auth.decorators import login_required
+import os
 #------Products------------
-
+#------superuser-------
 @login_required
 def create_product(request):
     if request.user.is_superuser:
@@ -48,6 +50,50 @@ def delete_product(request, pk):
     else:
         return redirect('/')
 
+@login_required
+def update_product(request, pk):
+    if request.user.is_superuser:
+        if request.method == 'POST':
+            product = Product.objects.get(id=pk)
+            form = Formulario_Product(request.POST,request.FILES)
+            
+            if form.is_valid():
+                product.category = form.cleaned_data['category']
+                product.model = form.cleaned_data['model']
+                product.price = form.cleaned_data['price']
+                product.coulor = form.cleaned_data['coulor']
+                product.description = form.cleaned_data['description']
+                product.stock = form.cleaned_data['stock']
+                
+                if form.cleaned_data['img']:
+                    product.img = form.cleaned_data ['img']
+
+
+                product.save()
+                return redirect('/shop')
+
+
+        elif request.method == 'GET':
+            product = Product.objects.get(id=pk)
+
+            form = Formulario_Product(initial={
+                                            'category':product.category,
+                                            'model':product.model, 
+                                            'price':product.price,
+                                            'coulor':product.coulor,
+                                            'description':product.description,
+                                            'stock':product.stock,
+                                            'img':product.img})
+        context = {'form':form}
+        return render(request, 'Productos/update_product.html', context=context)
+    else:
+        return redirect('/')
+
+#------superuser-------
+
+
+
+#------user-----------
 
 def Shop_single(request, pk):#muestra detalles de cada producto 
     if request.method == 'GET':
@@ -66,7 +112,7 @@ def search_products(request):
         'products': products
     }
     return render(request, 'Productos/search_products.html', context=context)
-
+#------user-----------
 #---------------------------------------------------------------------------------------
 
 
