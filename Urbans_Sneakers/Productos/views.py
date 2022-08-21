@@ -91,65 +91,6 @@ def update_product(request, pk):
     else:
         return redirect('/')
 
-#------superuser-------
-
-
-
-#------user-----------
-
-def Shop_single(request, pk):#muestra detalles de cada producto 
-    if request.method == 'GET':
-        product = Product.objects.get(pk=pk)
-        context = {'product':product}
-        return render(request, 'Productos/Shop_single.html', context=context)
-        #para cuando use el boton buy o add to cart
-    elif request.method == 'POST':
-        product = Product.objects.get(pk=pk)
-        return redirect('Productos/shop.html')
-
-def search_products(request):
-    search = request.GET['search']
-    products =Product.objects.filter(model__icontains=search)
-    context = {
-        'products': products
-    }
-    return render(request, 'Productos/search_products.html', context=context)
-#------user-----------
-#---------------------------------------------------------------------------------------
-
-
-
-
-
-
-
-
-
-
-#--------------------category----------------
-def Shop_Category(request, pk):
-    if request.method == 'GET':
-        category_id = Category.objects.filter(pk=pk)
-        products_id=Product.objects.filter(category_id=pk)
-        print(len(products_id))
-        context = {
-            'category_id':category_id,
-            'products_id':products_id
-        }
-        return render(request, 'Productos/Shop_Category.html', context=context)
-        
-def Shop_sub_Category(request, pk):
-    if request.method == 'GET':
-        sub_category_id = Sub_Category.objects.filter(pk=pk)
-        products_id=Product.objects.filter(sub_category_id=pk)
-        print(len(products_id))
-        context = {
-            'sub_category_id':sub_category_id,
-            'products_id':products_id
-        }
-        return render(request, 'Productos/Shop_sub_Category.html', context=context)
-
-#------superuser-------
 @login_required
 def create_category(request):
     if request.user.is_superuser:
@@ -190,3 +131,55 @@ def create_sub_category(request):
             return render(request, 'Productos/create_sub_category.html', context=context)
     else:
          return redirect('/')
+
+
+
+#------superuser-------
+
+
+
+#------user-----------
+
+def Shop_single(request, pk):#muestra detalles de cada producto 
+    if request.method == 'GET':
+        product = Product.objects.get(pk=pk)
+        context = {'product':product}
+        return render(request, 'Productos/Shop_single.html', context=context)
+        #para cuando use el boton buy o add to cart
+    elif request.method == 'POST':
+        product = Product.objects.get(pk=pk)
+        return redirect('Productos/shop.html')
+
+def search_products(request):#Busqueda de productos por nombe/modelo
+    search = request.GET['search']
+    products =Product.objects.filter(model__icontains=search)
+    context = {
+        'products': products
+    }
+    return render(request, 'Productos/search_products.html', context=context)
+
+def Shop_Category(request, pk):#Shop vista categoria
+    if request.method == 'GET':
+        category_id = Category.objects.filter(pk=pk)
+        products_id=Product.objects.filter(category_id=pk)
+        print(len(products_id))
+        context = {
+            'category_id':category_id,
+            'products_id':products_id
+        }
+        return render(request, 'Productos/Shop_Category.html', context=context)
+        
+def Shop_sub_Category(request, pk):#Shop vista por sub_categoria
+    if request.method == 'GET':
+        sub_category_id = Sub_Category.objects.filter(pk=pk)
+        products_id=Product.objects.filter(sub_category_id=pk)
+        print(len(products_id))
+        context = {
+            'sub_category_id':sub_category_id,
+            'products_id':products_id
+        }
+        return render(request, 'Productos/Shop_sub_Category.html', context=context)
+
+
+#------user-----------
+
