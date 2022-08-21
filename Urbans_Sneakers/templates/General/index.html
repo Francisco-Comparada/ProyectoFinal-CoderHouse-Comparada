@@ -78,6 +78,13 @@ https://templatemo.com/tm-559-zay-shop
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
+                        {% if request.user.is_authenticated %}
+                        {% if request.user.is_superuser %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Settings</a>
+                        </li>
+                        {% endif %}
+                        {% endif %}
                     </ul>
                 </div>
                 <div class="navbar align-self-center d-flex">
@@ -236,15 +243,16 @@ https://templatemo.com/tm-559-zay-shop
             </div>
         </div>
         
+        <!-- modificar cambio a sub categoria hacer que el admin eliga que mostrar -->
         <div class="row">
-            {% if id_category %}
-            {% for categoria in id_category %}
-            <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="/Productos/Shop_Category/{{categoria.id}}"><img src='{{ categoria.img_category.url }}' class="rounded-circle  border"></a>
-                <h5 class="text-center mt-3 mb-3">{{categoria.category}}</h5>
-                <p class="text-center"><a href="/Productos/Shop_Category/{{categoria.id}}" class="btn btn-success">Go Shop</a></p>
-            </div>
-            {% endfor %}
+            {% if id_sub_category %}
+                {% for categoria in id_sub_category %}
+                    <div class="col-12 col-md-4 p-5 mt-3">
+                    <a href="/Productos/Shop_Category/{{categoria.id}}"><img src='{{ categoria.img_sub_category.url }}' class="rounded-circle  border"></a>
+                    <h5 class="text-center mt-3 mb-3">{{categoria.sub_category}}</h5>
+                    <p class="text-center"><a href="/Productos/Shop_Category/{{categoria.id}}" class="btn btn-success">Go Shop</a></p>
+                    </div>
+                {% endfor %}
             {% endif %}
             
         </div>

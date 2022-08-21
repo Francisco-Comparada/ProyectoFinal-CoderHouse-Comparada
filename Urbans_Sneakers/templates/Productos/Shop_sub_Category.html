@@ -11,15 +11,16 @@
             
             <div class="row">
                 {% for product in products_id %}
-                <h2> All's {{product.category}} </h2>
+                <h2> All's {{product.sub_category}} </h2>
                 {% endfor %}
                 <div class="col-md-4">
+                   
                     {% for product in products_id %}
                     <div class="card mb-4 product-wap rounded-0">
-                       
+                        
                         <div class="card rounded-0">
                             
-                            <!-- Aprender a mostrar imagenes cargadas en formularios  -->
+                           
                            <a href="/Productos/Shop_single/{{product.id}}"><img class="card-img rounded-0 img-fluid" src='{{ product.img.url }}'alt='imagen de producto {{product.model}}'></a> 
 
                             <!-- <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
@@ -59,5 +60,3 @@
 </div>
 </body>
 {% endblock %}
-
-

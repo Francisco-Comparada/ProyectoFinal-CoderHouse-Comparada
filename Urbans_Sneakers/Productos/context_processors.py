@@ -1,9 +1,15 @@
-from Productos.models import Category
+from Productos.models import Category,Sub_Category
 
 def id_category(request):
     id_category=Category.objects.all()
-    cont=int(3)
+   
     return{
         'id_category':id_category,
-        'cont':cont
+    }
+def id_sub_category(request):
+    id_sub_category=Sub_Category.objects.all()
+    
+    return{
+        'id_sub_category':id_sub_category,
+        
     }

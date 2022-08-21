@@ -15,44 +15,37 @@
     <div class="container py-4">
         <div class="row">
             <div class="col-lg-3">
-                <h1 class="h2 pb-4">Categorias</h1>
+               <a href="/shop"class="h2 pb-4"style="color: black"><h1 class="h2 pb-4" style="color: black">Categories</h1></a>
+                {% if id_category %}
+                                {% for categoria in id_category %}
                 <ul class="list-unstyled templatemo-accordion">
                     <li class="pb-3">
-                       <!--  <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
-                            Sneaker
-                            <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
-                        </a> -->
-                        <ul class="collapse show list-unstyled pl-3">
-                            
-                            {% if id_category %}
-                                {% for categoria in id_category %}
-                                    <li><a class="text-decoration-none" href="/Productos/Shop_Category/{{categoria.id}}">{{categoria.category}}</a></li>
-                                {% endfor %}
-                            {% endif %}
-                        </ul>
-                    </li>
-                  <!--   <li class="pb-3">
-                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="#">
-                            Accesorios
+                        <a class="collapsed d-flex justify-content-between h3 text-decoration-none" href="/Productos/Shop_Category/{{categoria.id}}">
+                            {{categoria.category}}
                             <i class="fa fa-fw fa-chevron-circle-down mt-1"></i>
                         </a>
+                        {% for sub_category in id_sub_category %}
+                            {% if sub_category.category_id == categoria.id %}
                         <ul class="collapse show list-unstyled pl-3">
-                            <li><a class="text-decoration-none" href="/sneakers/list_Accessories/">Accesorios</a></li>
+                            <li><a class="text-decoration-none" href="/Productos/Shop_sub_Category/{{sub_category.id}}"><img src="'{{ sub_category.img_sub_category.url }}'" alt="">{{sub_category.sub_category}}</a></li>
                         </ul>
-                    </li> -->
-                    
+                        {% endif %}
+                        {% endfor %} 
+                        
+                    </li>
                 </ul>
+                {% endfor%}
+                {% endif %}
             </div>
             {% block contenido_que_cambia_shop %}
             <div class="col-lg-9">
-                
                 <div class="row">
-                    {% if id_category %}
-                    {% for categoria in id_category %}
+                    {% if id_sub_category %}
+                    {% for sub_categoria in id_sub_category %}
                     <div class="col-md-4">
                         <div class="card mb-4 product-wap rounded-0">
                             <div class="card rounded-0">
-                                <a href="/Productos/Shop_Category/{{categoria.id}}"><img class="card-img rounded-0 " src='{{categoria.img_category.url }}'></a>
+                                <a href="/Productos/Shop_sub_Category/{{sub_categoria.id}}"><img class="card-img rounded-0 " src='{{sub_categoria.img_sub_category.url }}'></a>
                                 <!-- <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
                                     <ul class="list-unstyled">
                                         <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
@@ -62,7 +55,7 @@
                                 </div> -->
                             </div>
                             <div class="card-body">
-                                <a href="/Productos/Shop_Category/{{categoria.id}}" class="h3 text-decoration-none"><strong>{{categoria.category}}</strong></a>
+                                <a href="/Productos/Shop_sub_Category/{{sub_categoria.id}}" class="h3 text-decoration-none"><strong>{{sub_categoria.sub_category}}</strong></a>
                                 <ul class="w-100 list-unstyled d-flex justify-content-between mb-0">
                                     <li></li>
                                     <li class="pt-2">

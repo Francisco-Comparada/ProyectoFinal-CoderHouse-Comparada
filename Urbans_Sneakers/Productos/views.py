@@ -3,9 +3,8 @@ from multiprocessing import context
 from pickle import NONE
 from unicodedata import category
 from django.shortcuts import render,redirect
-from django.views.generic import ListView, DetailView, CreateView, DeleteView,UpdateView
-from Productos.forms import Formulario_Product
-from Productos.models import Product,Category
+from Productos.forms import Formulario_Product,Formulario_Create_Category,Formulario_Create_Sub_Category
+from Productos.models import Product,Category,Sub_Category
 from django.contrib.auth.decorators import login_required
 import os
 #------Products------------
@@ -19,6 +18,7 @@ def create_product(request):
             if form.is_valid():
                 Product.objects.create(
                     category= form.cleaned_data['category'],
+                    sub_category= form.cleaned_data['sub_category'],
                     model=form.cleaned_data['model'],
                     price=form.cleaned_data['price'],
                     coulor=form.cleaned_data['coulor'],
@@ -59,6 +59,7 @@ def update_product(request, pk):
             
             if form.is_valid():
                 product.category = form.cleaned_data['category']
+                product.sub_category = form.cleaned_data['sub_category'],
                 product.model = form.cleaned_data['model']
                 product.price = form.cleaned_data['price']
                 product.coulor = form.cleaned_data['coulor']
@@ -78,6 +79,7 @@ def update_product(request, pk):
 
             form = Formulario_Product(initial={
                                             'category':product.category,
+                                            'sub_category':product.sub_category,
                                             'model':product.model, 
                                             'price':product.price,
                                             'coulor':product.coulor,
@@ -135,11 +137,56 @@ def Shop_Category(request, pk):
             'products_id':products_id
         }
         return render(request, 'Productos/Shop_Category.html', context=context)
+        
+def Shop_sub_Category(request, pk):
+    if request.method == 'GET':
+        sub_category_id = Sub_Category.objects.filter(pk=pk)
+        products_id=Product.objects.filter(sub_category_id=pk)
+        print(len(products_id))
+        context = {
+            'sub_category_id':sub_category_id,
+            'products_id':products_id
+        }
+        return render(request, 'Productos/Shop_sub_Category.html', context=context)
 
-class Create_Category(CreateView):
-    model = Category
-    template_name = 'Productos/create_Category.html'
-    fields = '__all__'
-    success_url = '/Productos/create_product/'
+#------superuser-------
+@login_required
+def create_category(request):
+    if request.user.is_superuser:
+        if request.method == 'POST':
+            form = Formulario_Create_Category(request.POST, request.FILES)
 
+            if form.is_valid():
+                Category.objects.create(
+                    category= form.cleaned_data['category'],
+                   
+                )
+                return redirect('/')
 
+        elif request.method == 'GET':
+            form = Formulario_Create_Category()
+            context = {'form':form}
+            return render(request, 'Productos/create_Category.html', context=context)
+    else:
+         return redirect('/')
+
+@login_required
+def create_sub_category(request):
+    if request.user.is_superuser:
+        if request.method == 'POST':
+            form = Formulario_Create_Sub_Category(request.POST, request.FILES)
+
+            if form.is_valid():
+                Sub_Category.objects.create(
+                    category= form.cleaned_data['category'],
+                    sub_category= form.cleaned_data['sub_category'],
+                    img_sub_category=form.cleaned_data['img_sub_category'],
+                )
+                return redirect('/')
+
+        elif request.method == 'GET':
+            form = Formulario_Create_Sub_Category()
+            context = {'form':form}
+            return render(request, 'Productos/create_sub_category.html', context=context)
+    else:
+         return redirect('/')
