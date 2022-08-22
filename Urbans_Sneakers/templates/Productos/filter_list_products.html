@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+    {% extends 'General/index.html' %}
+
+<body>
+    {% block base %}
+    {% load static %}
+
+    <div class="row">
+            {% for product in products %}
+                <div class="col-12 col-md-4 p-5 mt-3">
+                <a href="/Productos/descripcion_product/{{product.id}}"><img src='{{ product.img.url }}' class=""></a>
+                <h5 class="text-center mt-3 mb-3">{{product.model}}</h5>
+                </div>
+            {% endfor %}
+        
+        
+    </div>
+    {% endblock %}

@@ -27,7 +27,7 @@ def create_product(request):
                     img = form.cleaned_data['img'],
                 )
                 
-                return redirect(Shop_Category)
+                return redirect('/setting')
 
         elif request.method == 'GET':
             form = Formulario_Product()
@@ -46,7 +46,7 @@ def delete_product(request, pk):
         elif request.method == 'POST':
             product = Product.objects.get(pk=pk)
             product.delete()
-            return redirect('/Productos/shop.html')
+            return redirect('/setting')
     else:
         return redirect('/')
 
@@ -59,7 +59,7 @@ def update_product(request, pk):
             
             if form.is_valid():
                 product.category = form.cleaned_data['category']
-                product.sub_category = form.cleaned_data['sub_category'],
+                product.sub_category = form.cleaned_data['sub_category']
                 product.model = form.cleaned_data['model']
                 product.price = form.cleaned_data['price']
                 product.coulor = form.cleaned_data['coulor']
@@ -71,7 +71,7 @@ def update_product(request, pk):
 
 
                 product.save()
-                return redirect('/shop')
+                return redirect('/setting')
 
 
         elif request.method == 'GET':
@@ -102,7 +102,7 @@ def create_category(request):
                     category= form.cleaned_data['category'],
                    
                 )
-                return redirect('/')
+                return redirect('/setting')
 
         elif request.method == 'GET':
             form = Formulario_Create_Category()
@@ -123,7 +123,7 @@ def create_sub_category(request):
                     sub_category= form.cleaned_data['sub_category'],
                     img_sub_category=form.cleaned_data['img_sub_category'],
                 )
-                return redirect('/')
+                return redirect('/setting')
 
         elif request.method == 'GET':
             form = Formulario_Create_Sub_Category()
@@ -132,8 +132,67 @@ def create_sub_category(request):
     else:
          return redirect('/')
 
+@login_required
+def filter_products(request):
+    if request.user.is_superuser:
+        return render (request, 'Productos/filter_products.html')
 
+@login_required
+def filter_Category(request, pk):
+    if request.user.is_superuser: 
+        if request.method == 'GET':
+            category_id = Category.objects.filter(pk=pk)
+            products_id=Product.objects.filter(category_id=pk)
+            print(len(products_id))
+            context = {
+                'category_id':category_id,
+                'products_id':products_id
+            }
+            return render(request, 'Productos/filter_Category.html', context=context)
 
+@login_required
+def filter_sub_Category(request, pk):
+    if request.user.is_superuser:
+        if request.method == 'GET':
+            sub_category_id = Sub_Category.objects.filter(pk=pk)
+            products_id=Product.objects.filter(sub_category_id=pk)
+            print(len(products_id))
+            context = {
+                'sub_category_id':sub_category_id,
+                'products_id':products_id
+            }
+            return render(request, 'Productos/filter_sub_Category.html', context=context)
+
+@login_required
+def filter_search_products(request):#Busqueda de productos por nombre/modelo
+    if request.user.is_superuser:
+        search = request.GET['search']
+        products =Product.objects.filter(model__icontains=search)
+        context = {
+            'products': products
+        }
+        return render(request, 'Productos/filter_search_products.html', context=context)
+
+@login_required
+def descripcion_product(request, pk):#muestra detalles de cada producto para editar o eliminar
+    if request.user.is_superuser:
+        if request.method == 'GET':
+            product = Product.objects.get(pk=pk)
+            context = {'product':product}
+            return render(request, 'Productos/descripcion_product.html', context=context)
+            #para cuando use el boton buy o add to cart
+        elif request.method == 'POST':
+            product = Product.objects.get(pk=pk)
+            return redirect('Productos/filter_products.html')
+
+@login_required
+def filter_list_products(request):
+    if request.user.is_superuser:
+            products = Product.objects.all() #Trae todos
+            context = {
+                'products':products
+            }
+            return render(request, 'Productos/filter_list_products.html', context=context)
 #------superuser-------
 
 
@@ -179,6 +238,7 @@ def Shop_sub_Category(request, pk):#Shop vista por sub_categoria
             'products_id':products_id
         }
         return render(request, 'Productos/Shop_sub_Category.html', context=context)
+
 
 
 #------user-----------

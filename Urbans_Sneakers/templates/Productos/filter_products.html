@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+    {% extends 'General/index.html' %}
+
+<body>
+    {% block base %}
+    {% load static %}
+   
+    <div class="container py-4">
+        <div class="row"> <ul class="list-unstyled templatemo-accordion">
+            <li class="pb-3">
+                <h2>Eliminar o editar productos </h2>
+                <h3>Filtrar por:</h3>  
+                    <li> <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                          Categoria
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            {% for category in id_category %}
+                          <li><a class="dropdown-item" href="/Productos/filter_Category/{{category.id}}">{{category.category}}</a></li>
+                          {% endfor %}
+                        </ul>
+                      </div> </li>   
+                <p></p>
+                <li> <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                      Sub Categoria
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        {% for sub_category in id_sub_category %}
+                      <li><a class="dropdown-item" href="/Productos/filter_sub_Category/{{sub_category.id}}">{{sub_category.sub_category}}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </div> </li>  
+               <p></p> 
+               <p></p> 
+                <ul class="collapse show list-unstyled pl-3"></ul>
+                    <li><a href="/Productos/filter_list_products/"><button type="button" class="btn btn-secondary"> Todos los productos </button></a> </li>  
+                <p></p>
+               <form  action="/Productos/filter_search_products/" method="GET">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" type="search" placeholder="Buscar por modelo/nombre" aria-label="search" name = 'search'>
+                        <div class="input-group-append">
+                        <button class="btn btn-outline-secondary" type="submit">Buscar</button>
+                        </div>
+                        
+                    </div>
+                </form>
+        
+            </li>
+        </div>
+    </div>
+
+{% endblock %}
