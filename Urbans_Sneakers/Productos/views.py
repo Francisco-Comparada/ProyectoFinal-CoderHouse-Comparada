@@ -112,6 +112,20 @@ def create_category(request):
          return redirect('/')
 
 @login_required
+def delete_category(request, pk):
+    if request.user.is_superuser:
+        if request.method == 'GET':
+            category = Category.objects.get(pk=pk)
+            context = {'category':category}
+            return render(request, 'Productos/delete_category.html', context=context)
+        elif request.method == 'POST':
+            category = Category.objects.get(pk=pk)
+            category.delete()
+            return redirect('/setting')
+    else:
+        return redirect('/')
+
+@login_required
 def create_sub_category(request):
     if request.user.is_superuser:
         if request.method == 'POST':
@@ -131,6 +145,20 @@ def create_sub_category(request):
             return render(request, 'Productos/create_sub_category.html', context=context)
     else:
          return redirect('/')
+
+@login_required
+def delete_sub_category(request, pk):
+    if request.user.is_superuser:
+        if request.method == 'GET':
+            sub_category = Sub_Category.objects.get(pk=pk)
+            context = {'sub_category':sub_category}
+            return render(request, 'Productos/delete_sub_category.html', context=context)
+        elif request.method == 'POST':
+            sub_category = Sub_Category.objects.get(pk=pk)
+            sub_category.delete()
+            return redirect('/setting')
+    else:
+        return redirect('/')
 
 @login_required
 def filter_products(request):
@@ -238,8 +266,6 @@ def Shop_sub_Category(request, pk):#Shop vista por sub_categoria
             'products_id':products_id
         }
         return render(request, 'Productos/Shop_sub_Category.html', context=context)
-
-
 
 #------user-----------
 

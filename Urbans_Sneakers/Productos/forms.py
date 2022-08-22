@@ -1,3 +1,5 @@
+from tkinter import Widget
+from tkinter.tix import Select
 from django import forms
 from .models import Category, Sub_Category
 

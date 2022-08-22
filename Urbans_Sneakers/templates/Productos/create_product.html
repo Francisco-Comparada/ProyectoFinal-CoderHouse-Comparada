@@ -8,13 +8,53 @@
    
 <form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
-    <table>
-        {{ form.as_table}}
+    <h3>Añadir producto</h3>
 
-    </table>     
+     <div class="form-row">
+          <div class="form-group col-md-6" >
+              <label >Categorias:{{ form.category }}</label>
+          </div>
+          <p></p>
+          <div class="form-group col-md-6" >
+              <label >Sub Categorias: {{ form.sub_category }}</label>
+          </div>
+          <p></p>
+          <div class="form-group col-md-6">
+              <label for="exampleInputPassword1">Modelo:</label>
+              {{ form.model }}
+            </div>
+            <p></p>
+            <div class="form-group col-md-6">
+              <label for="exampleInputPassword1">Precio:</label>
+              {{ form.price }}
+            </div>
+            <p></p>
+            <div class="form-group col-md-6">
+              <label for="exampleInputPassword1">Color:</label>
+              {{ form.coulor }}
+            </div>
+            <p></p>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Descripcion:</label>
+              {{ form.description }}
+            </div>
+            <p></p>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Stock:</label>
+              {{ form.stock }}
+            </div>
+            <p></p>
+            <div class="form-group">
+              <label for="exampleFormControlFile1">Imagen del producto:</label>
+              {{ form.img }}
+            </div>
+        </div>
+
+      
     
     <p><input type="submit" value="Enviar"></p>
     
     </form>
     
     {% endblock %}
+  

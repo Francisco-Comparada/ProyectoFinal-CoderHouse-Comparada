@@ -1,5 +1,21 @@
 # ProyectoFinal-CoderHouse-Comparada
 
-first commit Creacion proyecto
-'Corriendo servidor' Probando que el servidor corra
-'Configurando settings' Añadiendo templates static y media a settings 
+cosas que faltan:
+Productos:
+-anidar categoria con subcategoria (es un quilombo)
+-editar o eliminar categoria y sub categoria (facil)
+-carrito 
+
+Pagina
+-crear base.html---->es cambiar el nombre del index a base--->crear el index*----> hay que cambiar los extend de todos los html 
+-crear index personalizable
+-solucioner problema al mostrar productos destacados en el index (hacer desp crear index personalizable)
+-organizar mejor por carpeta los html
+
+Users:
+-falta poder editar los perfiles 
+-me gustaria mas opciones al registrar---> formulario echo a mano  
+-ver perfiles desde la nav bar 
+
+Extra si llego
+-usar otra base de datos 

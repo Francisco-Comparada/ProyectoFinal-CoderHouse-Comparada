@@ -1,5 +1,7 @@
 from tkinter import CASCADE
 from django.db import models
+
+
 class Category(models.Model):
     category=models.CharField(max_length=75)
     def __str__(self):
