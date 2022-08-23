@@ -126,11 +126,47 @@ def delete_category(request, pk):
         return redirect('/')
 
 @login_required
+def update_category(request, pk):
+    if request.user.is_superuser:
+        if request.method == 'POST':
+            category = Category.objects.get(id=pk)
+            form = Formulario_Create_Category(request.POST,request.FILES)
+            
+            if form.is_valid():
+                category.category = form.cleaned_data['category']
+                category.save()
+                return redirect('/setting')
+
+        elif request.method == 'GET':
+            category = Product.objects.get(id=pk)
+
+            form = Formulario_Create_Category(initial={'category':category.category,})
+        context = {'form':form}
+        return render(request, 'Productos/update_category.html', context=context)
+    else:
+        return redirect('/')
+
+@login_required
+def select_category(request):
+    if request.user.is_superuser:
+        return render (request, 'Productos/select_category.html')
+
+@login_required
+def descripcion_category(request, pk):
+    if request.user.is_superuser:
+        if request.method == 'GET':
+            category = Category.objects.get(pk=pk)
+            context = {'category':category}
+            return render(request, 'Productos/descripcion_category.html', context=context)
+        elif request.method == 'POST':
+            category = Category.objects.get(pk=pk)
+            return redirect('Productos/select_category.html')
+
+@login_required
 def create_sub_category(request):
     if request.user.is_superuser:
         if request.method == 'POST':
             form = Formulario_Create_Sub_Category(request.POST, request.FILES)
-
             if form.is_valid():
                 Sub_Category.objects.create(
                     category= form.cleaned_data['category'],
@@ -159,6 +195,51 @@ def delete_sub_category(request, pk):
             return redirect('/setting')
     else:
         return redirect('/')
+
+@login_required
+def update_sub_category(request, pk):
+    if request.user.is_superuser:
+        if request.method == 'POST':
+            sub_category = Sub_Category.objects.get(id=pk)
+            form = Formulario_Create_Sub_Category(request.POST,request.FILES)
+            
+            if form.is_valid():
+                sub_category.category = form.cleaned_data['category']
+                sub_category.sub_category = form.cleaned_data['sub_category']
+
+                if form.cleaned_data['img_sub_category']:
+                    sub_category.img_sub_category = form.cleaned_data ['img_sub_category']
+                sub_category.save()
+                return redirect('/setting')
+
+        elif request.method == 'GET':
+            sub_category = Sub_Category.objects.get(id=pk)
+
+            form = Formulario_Create_Sub_Category(initial={
+                                                             'category':sub_category.category, 
+                                                             'sub_category':sub_category.sub_category,
+                                                             'img_sub_category':sub_category.img_sub_category
+                                                            })
+        context = {'form':form}
+        return render(request, 'Productos/update_sub_category.html', context=context)
+    else:
+        return redirect('/')
+
+@login_required
+def select_sub_category(request):
+    if request.user.is_superuser:
+        return render (request, 'Productos/select_sub_category.html')
+
+@login_required
+def descripcion_sub_category(request, pk):
+    if request.user.is_superuser:
+        if request.method == 'GET':
+            sub_category = Sub_Category.objects.get(pk=pk)
+            context = {'sub_category':sub_category}
+            return render(request, 'Productos/descripcion_sub_category.html', context=context)
+        elif request.method == 'POST':
+            sub_category = Sub_Category.objects.get(pk=pk)
+            return redirect('Productos/select_sub_category.html')
 
 @login_required
 def filter_products(request):

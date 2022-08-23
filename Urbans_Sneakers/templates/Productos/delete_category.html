@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% extends 'General/index.html' %}
+
+<body>
+    {% block base %}
+    {% load static %}
+   <h3>Categoria: <strong> {{category.category}}</strong></h3>
+   <form action="" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Borrar">
+    </form>
+
+
+
+    {% endblock %}

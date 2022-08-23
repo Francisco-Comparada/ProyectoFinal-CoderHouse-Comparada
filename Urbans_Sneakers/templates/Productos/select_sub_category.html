@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+    {% extends 'General/index.html' %}
+
+<body>
+    {% block base %}
+    {% load static %}
+   
+    <div class="container py-4">
+        <div class="row"> <ul class="list-unstyled templatemo-accordion">
+            <li class="pb-3">
+                <h2>Eliminar o editar productos </h2>
+                <h3>Selecionar categoria</h3>  
+                    <li> <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                          Sub categoria
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                            {% for sub_category in id_sub_category %}
+                          <li><a class="dropdown-item" href="/Productos/descripcion_sub_category/{{sub_category.id}}">{{sub_category.sub_category}}</a></li>
+                          {% endfor %}
+                        </ul>
+                      </div> </li>   
+                <p></p>
+            </li>
+        </div>
+    </div>
+    {% endblock %}

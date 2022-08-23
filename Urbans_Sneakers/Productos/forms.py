@@ -9,7 +9,7 @@ class Formulario_Create_Category(forms.Form):
 class Formulario_Create_Sub_Category(forms.Form):
     category=forms.ModelChoiceField(label='Categoria', queryset=Category.objects.all())
     sub_category=forms.CharField(max_length=75)
-    img_category= forms.ImageField()
+    img_sub_category= forms.ImageField(required=False)
 
 class Formulario_Product(forms.Form):
     category=forms.ModelChoiceField(label='Categoria', queryset=Category.objects.all())
