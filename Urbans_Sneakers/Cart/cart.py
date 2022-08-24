@@ -18,15 +18,18 @@ class Cart:
                 'price':str(product.price),
                 'cant':1,
                 'coulor':product.coulor,
-                'stock':str(product.stock),
+                'stock':product.stock,
                 'img':product.img.url,
             }
         else:
             for key, value in self.cart.items():
                 if key==str(product.id):
-                    value['cant']=value['cant']+1
-                    value['price']=float(value['price'])+product.price
-                    break
+                    if value['stock'] <= value['cant']:
+                        break
+                    else:
+                        value['cant']=value['cant']+1
+                        value['price']=float(value['price'])+product.price
+                        break
         self.save_cart()
 
     def save_cart(self):

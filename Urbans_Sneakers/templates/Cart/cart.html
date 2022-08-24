@@ -56,7 +56,10 @@
                             <!-- Quantity -->
                             <p></p>
                             <div class="d-flex mb-1" >
+                      
                                 <a href="{% url 'cart:subtract_product' value.product_id %}">
+                                
+
                                     <button class="btn btn-success px-4 me-2">
                                         <i class="fas fa-minus"></i>
                                     </button>
@@ -64,7 +67,7 @@
                                 <div class="form-outline ">
                                     <p  class="form-control" >{{value.cant}}</p>
                                 </div>
-                                         
+    
                                 <a href="{% url 'cart:add_product' value.product_id %}">
                                     <button class="btn btn-success px-4 ms-2">
                                         <i class="fas fa-plus"></i>
