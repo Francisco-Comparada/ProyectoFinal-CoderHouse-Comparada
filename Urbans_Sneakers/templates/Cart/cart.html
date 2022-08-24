@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% extends 'General/index.html' %}
+
+<body> 
+    {% block base %}
+        {% load static %}
+            <section class="h-100 gradient-custom">
+                <div class="container py-5">
+                <div class="row d-flex justify-content-center my-4">
+                    <div class="col-md-8">
+                    <div class="card mb-4">
+                        <div class="card-header py-3">
+                        <h5 class="mb-0">Carrito </h5>
+                        </div>
+
+            {% if request.session.cart.items %}
+                {% for key, value in request.session.cart.items %}  
+        
+                    <div class="card-body">
+                        <!-- Single item -->
+                        <div class="row">
+                            <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                            <!-- Image -->
+                            <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                                <img src="{{ value.img }}"
+                                class="w-100" alt="{{ value.model}}" />
+                                <a href="#!">
+                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                                </a>
+                            </div>
+                            <!-- Image -->
+                            </div>
+            
+                            <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
+                            <!-- Data -->
+                            <p><strong>{{value.model}}</strong></p>
+                            <p>Color: {{value.coulor}}</p>
+                            <p>Stock disponible: {{value.stock}}</p>
+                            
+                            <!-- <p>Size: M</p> -->
+                            
+                                    <a href="{% url 'cart:delete_product' value.product_id %}">
+                                        <button type="button" class="btn btn-success btn-sm me-1 mb-2" data-mdb-toggle="tooltip"
+                                            title="Remove item" >Eliminar producto
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </a>
+                              
+                            <!-- Data -->
+                            </div>
+            
+                            <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+
+
+                            <!-- Quantity -->
+                            <p></p>
+                            <div class="d-flex mb-1" >
+                                <a href="{% url 'cart:subtract_product' value.product_id %}">
+                                    <button class="btn btn-success px-4 me-2">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </a>
+                                <div class="form-outline ">
+                                    <p  class="form-control" >{{value.cant}}</p>
+                                </div>
+                                         
+                                <a href="{% url 'cart:add_product' value.product_id %}">
+                                    <button class="btn btn-success px-4 ms-2">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </a>
+                                
+                            </div>
+                            <!-- Quantity -->
+
+                            <!-- Price -->
+                            <p></p>
+                            <p class="text-start text-md-center">
+                               Precio: <strong>${{value.price}}</strong>
+                            </p>
+                            <!-- Price -->
+                            </div>
+                        </div>
+                        <!-- Single item -->
+
+                            <hr class="my-4" />
+                    </div>
+                    
+                {% endfor %}
+            {% endif %}
+            <!-- vaciar carrito -->
+            
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+             <a href="{% url 'cart:clean_cart' %}">
+                <button type="button" class="btn btn-success btn-lg "
+                    title="Remove cart" >Vaciar carrito
+                    <i class="fas fa-trash"></i>
+                </button>
+            </a>
+        </div>
+        <p></p>
+              </div>
+              <div class="card mb-4">
+                <div class="card-body">
+                  <p><strong>Entrega de envío prevista</strong></p>
+                  <p class="mb-0">12.10.2020 - 14.10.2020</p>
+                </div>
+              </div>
+              <div class="card mb-4 mb-lg-0">
+                <div class="card-body">
+                  <p><strong>Metodos de pago</strong></p>
+                  <img class="me-2" width="45px"
+                    src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/visa.svg"
+                    alt="Visa" />
+                  <img class="me-2" width="45px"
+                    src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/amex.svg"
+                    alt="American Express" />
+                  <img class="me-2" width="45px"
+                    src="https://mdbcdn.b-cdn.net/wp-content/plugins/woocommerce-gateway-stripe/assets/images/mastercard.svg"
+                    alt="Mastercard" />
+                  
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card mb-4">
+                <div class="card-header py-3">
+                  <h5 class="mb-0">Resumen</h5>
+                </div>
+                <div class="card-body">
+                  <ul class="list-group list-group-flush">
+                    <li
+                      class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
+                      Productos
+                      <span>${{total_cart_amount}}</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between align-items-center px-0">
+                      Envio
+                      <span>Gratis</span>
+                    </li>
+                    <li
+                      class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
+                      <div>
+                        <strong>Total </strong>
+                        <strong>
+                          <p class="mb-0">(Iva incluido)</p>
+                        </strong>
+                      </div>
+                      <span><strong>${{total_cart_amount}}</strong></span>
+                    </li>
+                  </ul>
+      
+                  <button type="button" class="btn btn-success btn-lg btn-block">
+                    Go to checkout
+                  </button>
+                </div>            
+              </div>      
+            </div>           
+          </div>
+        </div>
+      </section>  {% endblock %}

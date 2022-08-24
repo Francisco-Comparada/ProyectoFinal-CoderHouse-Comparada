@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'Productos',
     'users',
     'bootstrap5',
+    'Cart',
 ]
 
 MIDDLEWARE = [
@@ -68,6 +69,11 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'Productos.context_processors.id_category',
                 'Productos.context_processors.id_sub_category',
+                'Productos.context_processors.id_product',
+                'Cart.context_processors.total_cart_amount',
+                'Cart.context_processors.total_product',
+                
+                
 
             ],
         },

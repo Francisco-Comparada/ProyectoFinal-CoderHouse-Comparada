@@ -1,4 +1,5 @@
-from Productos.models import Category,Sub_Category
+from Productos.models import Category,Sub_Category,Product
+
 
 def id_category(request):
     id_category=Category.objects.all()
@@ -11,5 +12,12 @@ def id_sub_category(request):
     
     return{
         'id_sub_category':id_sub_category,
+        
+    }
+def id_product(request):
+    id_product=Product.objects.all()
+    
+    return{
+        'id_product':id_product,
         
     }

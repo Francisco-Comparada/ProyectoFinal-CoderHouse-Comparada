@@ -21,4 +21,3 @@ class Formulario_Product(forms.Form):
     stock=forms.IntegerField()
     img= forms.ImageField(required=False)
 
-    

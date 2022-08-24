@@ -1,9 +1,11 @@
 # ProyectoFinal-CoderHouse-Comparada
 
 cosas que faltan:
+
+
+
 Productos:
 -anidar categoria con subcategoria (es un quilombo)
--editar o eliminar categoria y sub categoria (facil)
 -carrito 
 
 Pagina
