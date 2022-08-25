@@ -1,24 +1,17 @@
-{% extends 'General/index.html' %}
+{% extends 'General/base.html' %}
 
 {% block base %}
 
 {% for product in products %}
-
     <div class="row">
         <div class="col-md-4">
             <div class="card mb-4 product-wap rounded-0">
                 <div class="card rounded-0">
-                    <!-- Aprender a mostrar imagenes cargadas en formularios  -->
+                    {% if product.img %}
                     <a href="/Productos/Shop_single/{{product.id}}"><img class="card-img rounded-0 img-fluid" src= '{{ product.img.url }}' alt='imagen de producto {{product.model}}'></a>
-
-                    <!-- <div class="card-img-overlay rounded-0 product-overlay d-flex align-items-center justify-content-center">
-                        <ul class="list-unstyled">
-                            <li><a class="btn btn-success text-white" href="shop-single.html"><i class="far fa-heart"></i></a></li>
-                            <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="far fa-eye"></i></a></li>
-                            <li><a class="btn btn-success text-white mt-2" href="shop-single.html"><i class="fas fa-cart-plus"></i></a></li>
-                        </ul>
-                    </div> -->
-
+                {% else %}
+                    <a href="/Productos/Shop_single/{{product.id}}"><img class="card-img rounded-0 img-fluid" src= '{% static "img/default.png" %}' alt='imagen de producto {{product.model}}'></a>
+                {% endif %} 
                 </div>
                 <div class="card-body">
                     <a href="/Productos/Shop_single/{{product.id}}" class="h3 text-decoration-none"><strong>{{product.model}}</strong></a>
@@ -32,14 +25,9 @@
                             <span class="product-color-dot color-dot-green float-left rounded-circle ml-1"></span>
                         </li>
                     </ul>
-                   
-                    
-                </div>
-            
-            </div>
-            
+                </div>    
+            </div>     
         </div>
-        
     </div>
     {% endfor %}
 {% endblock %}

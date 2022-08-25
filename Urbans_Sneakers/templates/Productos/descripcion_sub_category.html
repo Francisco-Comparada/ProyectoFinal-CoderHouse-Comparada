@@ -1,32 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-    {% extends 'General/index.html' %}
-
+    {% extends 'General/base.html' %}
 <body>
     {% block base %}
         {% load static %}
-   
         <div class="col-lg-7 mt-5">
             <div class="card">
                 {{sub_category.sub_category}}
                 <div class="card-body">
-                        <div class="row pb-3">
-                            <div class="col d-grid">
-                                <a href="/Productos/update_sub_category/{{sub_category.id}}"><button type="submit" class="btn btn-success btn-lg" name="submit" value="buy">Editar</button></a>
-                                
-                            </div>
-                            <div class="col d-grid">
-                                <a href="/Productos/delete_sub_category/{{sub_category.id}}"><button type="submit" class="btn btn-success btn-lg" name="submit" value="addtocard">Eliminar</button></a>
-                                
-                            </div>
+                    <div class="row pb-3">
+                        <div class="col d-grid">
+                            <a href="/Productos/update_sub_category/{{sub_category.id}}"><button type="submit" class="btn btn-success btn-lg" name="submit" value="buy">Editar</button></a>   
                         </div>
-
+                        <div class="col d-grid">
+                            <a href="/Productos/delete_sub_category/{{sub_category.id}}"><button type="submit" class="btn btn-success btn-lg" name="submit" value="addtocard">Eliminar</button></a>  
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-          
+        </div>  
     {% endblock %}
-
 </body>
 
 </html>

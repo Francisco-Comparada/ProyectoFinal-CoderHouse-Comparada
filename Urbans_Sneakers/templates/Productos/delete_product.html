@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-    {% extends 'General/index.html' %}
+    {% extends 'General/base.html' %}
 
 <body>
     {% block base %}
-    {% load static %}
-   <h3>Categoria: <strong> {{product.category}}</strong></h3>
-   <p>Model: <strong>{{product.model}}</strong></p>
-   <p>Precio: <strong>{{product.price}}</strong></p>
-   <p>Color: <strong>{{product.coulor}}</strong></p>
-   <p>Descripcion: <strong>{{product.description}}</strong></p>
-   <p>Stock: <strong>{{product.stock}}</strong></p>
-
-   <p>imagen: <img  width="300px" src="{{product.img.url}}" alt=""></p>
-   
-   <form action="" method="POST">
-    {% csrf_token %}
-    <input type="submit" value="Borrar">
-    </form>
-
-
-
-    {% endblock %}
+        {% load static %}
+            <h3>Categoria: <strong> {{product.category}}</strong></h3>
+            <p>Model: <strong>{{product.model}}</strong></p>
+            <p>Precio: <strong>{{product.price}}</strong></p>
+            <p>Color: <strong>{{product.coulor}}</strong></p>
+            <p>Descripcion: <strong>{{product.description}}</strong></p>
+            <p>Stock: <strong>{{product.stock}}</strong></p>
+            {% if product.img %}
+                <p>imagen: <img  width="300px" src="{{product.img.url}}" alt=""></p>
+            {% else %}
+                <p>imagen: <img  width="300px" src='{% static "img/default.png" %}' alt=""></p>
+            {% endif %}
+  
+        <form action="" method="POST">
+            {% csrf_token %}
+                <input type="submit" value="Borrar">
+        </form>
+    {% endblock %} 
+</body>
+</html>

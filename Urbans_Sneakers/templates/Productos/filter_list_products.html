@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-    {% extends 'General/index.html' %}
+    {% extends 'General/base.html' %}
 
 <body>
     {% block base %}
     {% load static %}
 
     <div class="row">
-            {% for product in products %}
-                <div class="col-12 col-md-4 p-5 mt-3">
-                <a href="/Productos/descripcion_product/{{product.id}}"><img src='{{ product.img.url }}' class=""></a>
-                <h5 class="text-center mt-3 mb-3">{{product.model}}</h5>
-                </div>
-            {% endfor %}
-        
-        
+        {% for product in products %}
+            <div class="col-12 col-md-3 p-5 mt-3">
+                {% if product.img %}
+                    <a href="/Productos/descripcion_product/{{product.id}}"><img src='{{ product.img.url }}' class=" img-fluid border"></a>
+                {% else %}
+                    <a href="/Productos/descripcion_product/{{product.id}}"><img src='{% static "img/default.png" %}' class=" img-fluid border"></a>
+                {% endif %}
+                <h5 class="h5 text-right mt-3 mb-3">{{product.model}}</h5>
+                <h4 class="h5 text-right mt-3 mb-3">${{product.price}}</h4>
+                <h4 class="h5 text-right mt-3 mb-3">Stock:{{product.stock}}</h4>   
+            </div>
+        {% endfor %}   
     </div>
     {% endblock %}

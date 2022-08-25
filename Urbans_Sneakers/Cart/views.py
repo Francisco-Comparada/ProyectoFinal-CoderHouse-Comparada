@@ -3,6 +3,7 @@ from django.shortcuts import render,redirect
 from .cart import Cart
 from Productos.models import Product
 from django.contrib.auth.decorators import login_required
+
 @login_required
 def cart(request):
     return render (request,'Cart/cart.html')

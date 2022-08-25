@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-    {% extends 'General/index.html' %}
+  {% extends 'General/base.html' %}
+
+
 
 <body> 
     {% block base %}
@@ -23,11 +25,19 @@
                             <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
                             <!-- Image -->
                             <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                              {% if value.img %}
                                 <img src="{{ value.img }}"
                                 class="w-100" alt="{{ value.model}}" />
                                 <a href="#!">
                                 <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
                                 </a>
+                              {% else %}
+                                <img src="{% static 'img/default.png' %}"
+                                class="w-100" alt="{{ value.model}}" />
+                                <a href="#!">
+                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.2)"></div>
+                                </a>
+                              {% endif %}
                             </div>
                             <!-- Image -->
                             </div>

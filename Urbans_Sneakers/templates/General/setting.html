@@ -1,52 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-
-
-    {% extends 'General/index.html' %}
-
-
-
+    {% extends 'General/base.html' %}
 <body>
-    {% block base %}
+{% block base %}
     {% load static %}
     <div class="container py-4">
         <div class="row"> <ul class="list-unstyled templatemo-accordion">
             <li class="pb-3">
                 <h3>Productos</h3>  
-
-                <ul class="collapse show list-unstyled pl-3"></ul>
-                    <li><a href="/Productos/create_Category/"><button type="button" class="btn btn-light">Añadir categoria</button></a> </li>   
-                <p></p>
-                <ul class="collapse show list-unstyled pl-3"></ul>
-                <li><a href="/Productos/select_category/"><button type="button" class="btn btn-light">Editar o eliminar categoria</button></a> </li>   
-                <p></p>
-                <ul class="collapse show list-unstyled pl-3"></ul>
-                    <li><a href="/Productos/create_sub_category/"><button type="button" class="btn btn-light">Añadir sub_categoria</button></a> </li> 
-               <p></p>
-               <ul class="collapse show list-unstyled pl-3"></ul>
-                <li><a href="/Productos/select_sub_category/"><button type="button" class="btn btn-light">Editar o eliminar Sub categoria</button></a> </li>   
-                 <p></p>
-                <ul class="collapse show list-unstyled pl-3"></ul>
-                    <a href="/Productos/create_product/"><button type="button" class="btn btn-light">Añadir producto</button></a> </li> 
-                <p></p>
-                
-                <ul class="collapse show list-unstyled pl-3"></ul>
-                <li><a href="/Productos/filter_products/"><button type="button" class="btn btn-light">Editar o eliminar producto</button></a> </li>  
-            <p></p>
-        
+                    <ul class="collapse show list-unstyled pl-3"></ul>
+                        <li><a href="/Productos/create_Category/"><button type="button" class="btn btn-light">Añadir categoria</button></a> </li>   
+                    <p></p>
+                    <ul class="collapse show list-unstyled pl-3"></ul>
+                        <li><a href="/Productos/select_category/"><button type="button" class="btn btn-light">Editar o eliminar categoria</button></a> </li>   
+                    <p></p>
+                    <ul class="collapse show list-unstyled pl-3"></ul>
+                        <li><a href="/Productos/create_sub_category/"><button type="button" class="btn btn-light">Añadir sub_categoria</button></a> </li> 
+                    <p></p>
+                    <ul class="collapse show list-unstyled pl-3"></ul>
+                        <li><a href="/Productos/select_sub_category/"><button type="button" class="btn btn-light">Editar o eliminar Sub categoria</button></a> </li>   
+                    <p></p>
+                    <ul class="collapse show list-unstyled pl-3"></ul>
+                        <a href="/Productos/create_product/"><button type="button" class="btn btn-light">Añadir producto</button></a> </li> 
+                    <p></p>               
+                    <ul class="collapse show list-unstyled pl-3"></ul>
+                        <li><a href="/Productos/filter_products/"><button type="button" class="btn btn-light">Editar o eliminar producto</button></a> </li>  
+                    <p></p>
             </li>
         </div>
     </div>
-
 {% endblock %}
-
-
-
-
-
-
-
-
 </body>
    
    

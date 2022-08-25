@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    {% extends 'General/index.html' %}
-
+    {% extends 'General/base.html' %}
 <body>
     {% block base %}
     {% load static %}
@@ -11,20 +10,19 @@
         <div class="container pb-5">
             <div class="row">
                 <div class="col-lg-5 mt-5">
-                    <div class="card mb-3">
-                        <img class="card-img img-fluid" src='{{ product.img.url }}' alt="Card image cap" id="product-detail">
-                    </div>
-                    <div class="row">
-                       
-                        <div id="multi-item-example" class="col-10 carousel slide carousel-multi-item" data-bs-ride="carousel">
-                           
-                            <div class="carousel-inner product-links-wap" role="listbox">
-
-                              
-                            </div>
-                    
+                    {% if product.img %}
+                        <div class="card mb-3">
+                            <img class="card-img img-fluid" src='{{ product.img.url }}' alt="Card image cap" id="product-detail">
                         </div>
-                        
+                    {% else %}
+                        <div class="card mb-3">
+                            <img class="card-img img-fluid" src='{% static "img/default.png" %}' alt="Card image cap" id="product-detail">
+                        </div>
+                    {% endif %}
+                    <div class="row">                      
+                        <div id="multi-item-example" class="col-10 carousel slide carousel-multi-item" data-bs-ride="carousel"> 
+                            <div class="carousel-inner product-links-wap" role="listbox"></div>
+                        </div>       
                     </div>
                 </div>
                 <!-- col end -->
@@ -33,7 +31,6 @@
                         <div class="card-body">
                             <h1 class="h2">{{product.model}}</h1>
                             <p class="h3 py-2">${{product.price}}</p>
-
                             <h4>Description:</h4>
                             <p>{{product.description}}</p>
                             <ul class="list-inline">
@@ -49,26 +46,22 @@
                             <ul class="list-unstyled pb-3">
                                 <li>{{product.stock}}</li>
                             </ul>
-
-                 
-                                <div class="row pb-3">
-                                    <div class="col d-grid">
-                                        <a href="/Productos/update_product/{{product.id}}"><button type="submit" class="btn btn-success btn-lg" name="submit" value="buy">Editar</button></a>
-                                       
-                                    </div>
-                                    <div class="col d-grid">
-                                        <a href="/Productos/delete_product/{{product.id}}"><button type="submit" class="btn btn-success btn-lg" name="submit" value="addtocard">Eliminar</button></a>
-                                        
-                                    </div>
+                            <div class="row pb-3">
+                                <div class="col d-grid">
+                                    <a href="/Productos/update_product/{{product.id}}"><button type="submit" class="btn btn-success btn-lg" name="submit" value="buy">Editar</button></a>
+                                    
                                 </div>
-
+                                <div class="col d-grid">
+                                    <a href="/Productos/delete_product/{{product.id}}"><button type="submit" class="btn btn-success btn-lg" name="submit" value="addtocard">Eliminar</button></a>  
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- Close Content -->
+  
     {% endblock %}
 
 </body>
