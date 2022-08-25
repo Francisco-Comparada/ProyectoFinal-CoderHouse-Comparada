@@ -163,10 +163,12 @@
                       <span><strong>${{total_cart_amount}}</strong></span>
                     </li>
                   </ul>
-      
-                  <button type="button" class="btn btn-success btn-lg btn-block">
-                    Go to checkout
-                  </button>
+                  {% if request.session.cart.items %}
+                  <a href="{% url 'order:process_order' %}"><button type="button" class="btn btn-success btn-lg btn-block">
+                    Terminar pedido
+                  </button></a>
+                  {% endif %}
+                  
                 </div>            
               </div>      
             </div>           
