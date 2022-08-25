@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 import os
 #------Products------------
 #------superuser-------
-@login_required
+@login_required(login_url='/User/login')
 def create_product(request):
     if request.user.is_superuser:
         if request.method == 'POST':
@@ -36,7 +36,7 @@ def create_product(request):
     else:
          return redirect('/')
 
-@login_required
+@login_required(login_url='/User/login')
 def delete_product(request, pk):
     if request.user.is_superuser:
         if request.method == 'GET':
@@ -50,7 +50,7 @@ def delete_product(request, pk):
     else:
         return redirect('/')
 
-@login_required
+@login_required(login_url='/User/login')
 def update_product(request, pk):
     if request.user.is_superuser:
         if request.method == 'POST':
@@ -91,7 +91,7 @@ def update_product(request, pk):
     else:
         return redirect('/')
 
-@login_required
+@login_required(login_url='/User/login')
 def create_category(request):
     if request.user.is_superuser:
         if request.method == 'POST':
@@ -111,7 +111,7 @@ def create_category(request):
     else:
          return redirect('/')
 
-@login_required
+@login_required(login_url='/User/login')
 def delete_category(request, pk):
     if request.user.is_superuser:
         if request.method == 'GET':
@@ -125,7 +125,7 @@ def delete_category(request, pk):
     else:
         return redirect('/')
 
-@login_required
+@login_required(login_url='/User/login')
 def update_category(request, pk):
     if request.user.is_superuser:
         if request.method == 'POST':
@@ -146,12 +146,12 @@ def update_category(request, pk):
     else:
         return redirect('/')
 
-@login_required
+@login_required(login_url='/User/login')
 def select_category(request):
     if request.user.is_superuser:
         return render (request, 'Productos/select_category.html')
 
-@login_required
+@login_required(login_url='/User/login')
 def descripcion_category(request, pk):
     if request.user.is_superuser:
         if request.method == 'GET':
@@ -162,7 +162,7 @@ def descripcion_category(request, pk):
             category = Category.objects.get(pk=pk)
             return redirect('Productos/select_category.html')
 
-@login_required
+@login_required(login_url='/User/login')
 def create_sub_category(request):
     if request.user.is_superuser:
         if request.method == 'POST':
@@ -182,7 +182,7 @@ def create_sub_category(request):
     else:
          return redirect('/')
 
-@login_required
+@login_required(login_url='/User/login')
 def delete_sub_category(request, pk):
     if request.user.is_superuser:
         if request.method == 'GET':
@@ -196,7 +196,7 @@ def delete_sub_category(request, pk):
     else:
         return redirect('/')
 
-@login_required
+@login_required(login_url='/User/login')
 def update_sub_category(request, pk):
     if request.user.is_superuser:
         if request.method == 'POST':
@@ -225,12 +225,12 @@ def update_sub_category(request, pk):
     else:
         return redirect('/')
 
-@login_required
+@login_required(login_url='/User/login')
 def select_sub_category(request):
     if request.user.is_superuser:
         return render (request, 'Productos/select_sub_category.html')
 
-@login_required
+@login_required(login_url='/User/login')
 def descripcion_sub_category(request, pk):
     if request.user.is_superuser:
         if request.method == 'GET':
@@ -241,12 +241,12 @@ def descripcion_sub_category(request, pk):
             sub_category = Sub_Category.objects.get(pk=pk)
             return redirect('Productos/select_sub_category.html')
 
-@login_required
+@login_required(login_url='/User/login')
 def filter_products(request):
     if request.user.is_superuser:
         return render (request, 'Productos/filter_products.html')
 
-@login_required
+@login_required(login_url='/User/login')
 def filter_Category(request, pk):
     if request.user.is_superuser: 
         if request.method == 'GET':
@@ -259,7 +259,7 @@ def filter_Category(request, pk):
             }
             return render(request, 'Productos/filter_Category.html', context=context)
 
-@login_required
+@login_required(login_url='/User/login')
 def filter_sub_Category(request, pk):
     if request.user.is_superuser:
         if request.method == 'GET':
@@ -272,7 +272,7 @@ def filter_sub_Category(request, pk):
             }
             return render(request, 'Productos/filter_sub_Category.html', context=context)
 
-@login_required
+@login_required(login_url='/User/login')
 def filter_search_products(request):#Busqueda de productos por nombre/modelo
     if request.user.is_superuser:
         search = request.GET['search']
@@ -282,7 +282,7 @@ def filter_search_products(request):#Busqueda de productos por nombre/modelo
         }
         return render(request, 'Productos/filter_search_products.html', context=context)
 
-@login_required
+@login_required(login_url='/User/login')
 def descripcion_product(request, pk):#muestra detalles de cada producto para editar o eliminar
     if request.user.is_superuser:
         if request.method == 'GET':
@@ -294,7 +294,7 @@ def descripcion_product(request, pk):#muestra detalles de cada producto para edi
             product = Product.objects.get(pk=pk)
             return redirect('Productos/filter_products.html')
 
-@login_required
+@login_required(login_url='/User/login')
 def filter_list_products(request):
     if request.user.is_superuser:
             products = Product.objects.all() #Trae todos

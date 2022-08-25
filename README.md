@@ -7,7 +7,8 @@ errores a solucionar
 
 Productos:
     -anidar categoria con subcategoria (es un quilombo)
-    -carrito (flta app pedidos)
+    -armar mejor el mail de la app pedido
+    -bajar el stock cuando se realiza un pedido(dificil)
 
 Pagina
     -crear index personalizable

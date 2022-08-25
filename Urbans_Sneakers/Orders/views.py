@@ -32,7 +32,7 @@ def process_order(request):
 
     messages.success(request,'Pedido realizado con exito')
 
-    return redirect('/Cart/cart/')
+    return redirect('cart:clean_cart')
 
 def send_mail_(**kwargs):
     subject='Gracias por el pedido Urbans Sneakers'
