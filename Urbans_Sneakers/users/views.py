@@ -47,18 +47,19 @@ def register(request):
 
 
 
-def show_profile(request):
+""" def show_profile(request):
     if request.user.is_authenticated:
-        return HttpResponse(request.user.profile.image.url)
+        return HttpResponse(request.user.profile.image.url) """
 
 # poner login request que solo el usuario pueda verve su propio perfil y armar bien el template 
 #no anda 
-def profile(request, pk):
+""" def profile(request, pk):
     if request.method == 'GET':
-        profile = User_profile.objects.get(pk=pk)
+        profile = request.user.id.get(pk=pk)
         context = {'profile':profile}
         return render(request, 'users/profile.html', context=context)
         #para cuando use el boton buy o add to cart
     elif request.method == 'POST':
-        profile = User_profile.objects.get(pk=pk)
+        profile = request.user.id.get(pk=pk)
         return redirect('General/index.html')
+ """
