@@ -52,6 +52,7 @@ def show_profile(request):
         return HttpResponse(request.user.profile.image.url)
 
 # poner login request que solo el usuario pueda verve su propio perfil y armar bien el template 
+#no anda 
 def profile(request, pk):
     if request.method == 'GET':
         profile = User_profile.objects.get(pk=pk)
@@ -59,5 +60,5 @@ def profile(request, pk):
         return render(request, 'users/profile.html', context=context)
         #para cuando use el boton buy o add to cart
     elif request.method == 'POST':
-        profile = profile.objects.get(pk=pk)
+        profile = User_profile.objects.get(pk=pk)
         return redirect('General/index.html')

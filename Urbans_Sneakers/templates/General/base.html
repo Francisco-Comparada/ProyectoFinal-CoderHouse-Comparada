@@ -95,13 +95,13 @@ https://templatemo.com/tm-559-zay-shop
                         {% if request.user.is_authenticated %}
                             {% if request.user.profile.image.url %}
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">
+                                    <a class="nav-link" href="/users/profile/{{request.user.id}}">
                                         <img class="rounded-circle  border" height="47" src= '{{ request.user.profile.image.url }}' alt='imagen de {{ request.user.username }}'> {{ request.user.username }} </a>     
                                 </li>
                             {% else %}
                             
                             <li class="nav-item">
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="/users/profile/{{request.user.id}}">
                                     <img class="rounded-circle  border" height="47" src= '{% static "img/default.png" %}' alt='imagen de {{ request.user.username }}'> {{ request.user.username }} </a>     
                             </li>
                             {% endif %}
