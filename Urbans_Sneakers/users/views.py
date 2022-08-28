@@ -1,9 +1,12 @@
+
+from cProfile import Profile
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
-from users.forms import User_registration_form
+from users.forms import User_registration_form,User_edit_form
 from django.http import HttpResponse
 from users.models import User_profile
+from django.contrib.auth.models import User
 
 def login_request(request):
     if request.method == 'POST':
@@ -26,9 +29,6 @@ def login_request(request):
         form = AuthenticationForm()
     return render(request, 'users/login.html', {'form': form})
 
-
-
-
 def register(request):
     if request.method == 'POST':
         form = User_registration_form(request.POST)
@@ -45,21 +45,55 @@ def register(request):
         form = User_registration_form()
         return render(request, 'users/register.html', {'form': form})
 
+def create_profile(request):
+    if request.method == 'POST':
+        form = User_edit_form(request.POST,request.FILES)
+        user_=User.objects.get(username=request.user)
+        if form.is_valid():
+                User_profile.objects.create(
+                    user=user_,
+                    phone=form.cleaned_data['phone'],
+                    address = form.cleaned_data['address'],
+                    image = form.cleaned_data['image'],
+                )
+                return redirect('/')
+    elif request.method == 'GET':
+        form = User_edit_form(initial={
+                                    'user':request.user.username,                                                               
+        })
+        context = {'form':form}
+    return render(request, 'users/create_profile.html', context=context)
+
+def edit_profile(request):
+    if request.method == 'POST':
+        form = User_edit_form(request.POST,request.FILES)
+        user_=User.objects.get(username=request.user)
+        edituser=User_profile.objects.get(user=user_)
+        if form.is_valid():
+            edituser.phone = form.cleaned_data['phone']
+            edituser.address = form.cleaned_data['address']
+            if form.cleaned_data['image']:
+                    edituser.image = form.cleaned_data['image']
+            edituser.save()
+            return redirect('/')
+
+    elif request.method == 'GET':
+
+        form = User_edit_form(initial={
+                                    'user':request.user.username,  
+                                    'phone':request.user.profile.phone, 
+                                    'address':request.user.profile.address, 
+                                    'image':request.user.profile.image,                                                              
+                                    })
+        context = {'form':form}
+        
+    return render(request, 'users/edit_profile.html', context=context)
 
 
-""" def show_profile(request):
-    if request.user.is_authenticated:
-        return HttpResponse(request.user.profile.image.url) """
-
-# poner login request que solo el usuario pueda verve su propio perfil y armar bien el template 
-#no anda 
-""" def profile(request, pk):
-    if request.method == 'GET':
-        profile = request.user.id.get(pk=pk)
-        context = {'profile':profile}
-        return render(request, 'users/profile.html', context=context)
-        #para cuando use el boton buy o add to cart
-    elif request.method == 'POST':
-        profile = request.user.id.get(pk=pk)
-        return redirect('General/index.html')
- """
+def profile(request):
+    user_=User.objects.get(username=request.user)
+    profile = User_profile.objects.filter(user_id=user_) 
+    context = {
+            'profile':profile
+        }
+    return render(request, 'users/profile.html', context=context)

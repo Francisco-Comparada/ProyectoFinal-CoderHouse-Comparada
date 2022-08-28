@@ -2,9 +2,21 @@
 
 {% block base %}
 
-<p>{{profile.user}}</p>
+<h3>{{ request.user.username }}</h3>
+<h3>{{ request.user.email }}</h3>
+{% if request.user.profile %}
+<h3>{{user.profile.phone}}</h3>
+<h3>{{user.profile.address}}</h3>
+<img src="{{user.profile.image.url}}" alt="">
 
-<p></p>
-<p></p>
+<a href="/users/edit_profile/"><button type="button" class="btn btn-success btn-lg btn-block">
+    Editar Perfilaa
+  </button></a>
+{% else %}
+<a href="/users/create_profile/"><button type="button" class="btn btn-success btn-lg btn-block">
+    Editar Perfil
+  </button></a>
+
+{%endif%}
 
 {% endblock %}
