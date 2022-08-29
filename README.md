@@ -11,10 +11,10 @@ Productos:
     -bajar el stock cuando se realiza un pedido(dificil)----> capaz que usando otra base de datos es mas facil (importante)
 
 Pagina
-    -crear index personalizable(importante)
+    -custom_page mejor visual 
     -organizar mejor por carpeta los html
 
-Users: ver pq no anda bien 
+Users: 
     -html de profile, edit:profile y create_profile arreglar estetica 
      
 

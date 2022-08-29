@@ -20,7 +20,7 @@ class Product(models.Model):
     category=models.ForeignKey('Category',on_delete=models.CASCADE)
     sub_category=models.ForeignKey('Sub_Category',on_delete=models.CASCADE,null=True)
     model=models.CharField(max_length=40)
-    price=models.IntegerField()
+    price=models.FloatField()
     coulor=models.CharField(max_length=40,null=True,blank=True)
     description=models.CharField(max_length=400,null=True,blank=True)
     stock=models.IntegerField(null=True)
