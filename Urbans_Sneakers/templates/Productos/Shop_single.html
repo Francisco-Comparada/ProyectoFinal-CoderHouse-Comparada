@@ -145,9 +145,14 @@
                                 </li>
                             </ul>
 
-                            <h5>Stock:</h5>
-                            <ul class="list-unstyled pb-3">
-                                <li>{{product.stock}}</li>
+                            
+                            <ul class="list-inline">
+                                <li class="list-inline-item">
+                                    <h5>Stock :</h5>
+                                </li>
+                                <li class="list-inline-item">
+                                    <p class="text-muted"><strong>{{product.stock}}</strong></p>
+                                </li>
                             </ul>
 
                             <form action="" method="GET">
@@ -178,7 +183,7 @@
                                 </div> -->
                                 <div class="row pb-3">
                                     
-                                    
+                                    {% if product.stock > 0 %}
                                     <div class="col d-grid">
                                         <a href="{% url 'cart:add_product' product.id %}">
                                             <button type="button" class="btn btn-success btn-lg "
@@ -186,6 +191,15 @@
                                             </button>
                                         </a>
                                     </div>
+                                    {% else %}
+                                    <div class="col d-grid">
+                                        <a href="#">
+                                            <button type="button" class="btn btn-success btn-lg "
+                                                title="Remove cart" >Producto Agotado 
+                                            </button>
+                                        </a>
+                                    </div>
+                                    {% endif %}
                                     
                                 </div>
                             </form>

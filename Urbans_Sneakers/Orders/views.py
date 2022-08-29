@@ -1,6 +1,9 @@
+from itertools import product
 from urllib import request
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
+
+from Productos.models import Product
 from .models import Order, Order_line
 from Cart.cart import Cart
 from django.contrib import messages
@@ -13,6 +16,7 @@ def process_order(request):
     order=Order.objects.create(user=request.user)
     cart=Cart(request)
     order_line=list()
+
     for key,value in cart.cart.items():
         order_line.append(Order_line(
             product_id=key,
@@ -20,6 +24,9 @@ def process_order(request):
             user=request.user,
             order=order,
         ))
+        produ=Product.objects.get(id=key)
+        produ.stock=produ.stock-value['cant']
+        produ.save()
 
     Order_line.objects.bulk_create(order_line)
 
@@ -45,7 +52,7 @@ def send_mail_(**kwargs):
     })
 
     message_text=strip_tags(message)
-    from_mail='francisco.comparada@gmail.com'
+    from_mail='urbanssneakers22@gmail.com'
     to=kwargs.get('email_user')
 
     send_mail(subject,message_text,from_mail,[to],html_message=message)

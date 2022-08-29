@@ -1,7 +1,7 @@
 {% extends 'General/base.html' %}
 
 {% block base %}
-
+{% load static %}
 {% for product in products %}
     <div class="row">
         <div class="col-md-4">
@@ -9,9 +9,9 @@
                 <div class="card rounded-0">
                     {% if product.img %}
                     <a href="/Productos/Shop_single/{{product.id}}"><img class="card-img rounded-0 img-fluid" src= '{{ product.img.url }}' alt='imagen de producto {{product.model}}'></a>
-                {% else %}
+                    {% else %}
                     <a href="/Productos/Shop_single/{{product.id}}"><img class="card-img rounded-0 img-fluid" src= '{% static "img/default.png" %}' alt='imagen de producto {{product.model}}'></a>
-                {% endif %} 
+                    {% endif %} 
                 </div>
                 <div class="card-body">
                     <a href="/Productos/Shop_single/{{product.id}}" class="h3 text-decoration-none"><strong>{{product.model}}</strong></a>

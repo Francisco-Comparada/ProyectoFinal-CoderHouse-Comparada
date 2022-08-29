@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 def cart(request):
     return render (request,'Cart/cart.html')
 
-
+@login_required
 def add_product(request,pk):
     if request.user.is_authenticated:
         cart=Cart(request)

@@ -2,9 +2,6 @@
 
 cosas que faltan:
 
-errores a solucionar 
--nav var parte de usuario esteticamente queda feo 
-
 Productos:
     -anidar categoria con subcategoria (es un quilombo)
     -armar mejor el mail de la app pedido (se puede dejar asi si sobra tiempo se hace )
@@ -19,7 +16,6 @@ Users:
      
 
 Extra si llego
-    -usar otra base de datos 
     -subir a un servidor 
 
 Limpiar codigo 
