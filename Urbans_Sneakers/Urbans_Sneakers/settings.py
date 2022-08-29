@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'bootstrap5',
     'Cart',
     'Orders',
+    'customize_page',
     
 ]
 
@@ -74,6 +75,8 @@ TEMPLATES = [
                 'Productos.context_processors.id_product',
                 'Cart.context_processors.total_cart_amount',
                 'Cart.context_processors.total_product',
+                'customize_page.context_processors.id_banner',
+                'customize_page.context_processors.id_featured_products'
                 
                 
 

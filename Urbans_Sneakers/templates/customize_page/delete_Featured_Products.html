@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% extends 'General/base.html' %}
+
+<body>
+    {% block base %}
+        {% load static %}
+            <h3>Producto: <strong> {{product.product}}</strong></h3>
+        <form action="" method="POST">
+            {% csrf_token %}
+                <input type="submit" value="Borrar">
+        </form>
+    {% endblock %} 
+</body>
+</html>

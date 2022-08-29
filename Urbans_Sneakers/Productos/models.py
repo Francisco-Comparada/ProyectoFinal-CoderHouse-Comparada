@@ -25,5 +25,7 @@ class Product(models.Model):
     description=models.CharField(max_length=400,null=True,blank=True)
     stock=models.IntegerField(null=True)
     img= models.ImageField(upload_to='img_Product/',blank=True )
+    def __str__(self):
+        return self.model
     
 

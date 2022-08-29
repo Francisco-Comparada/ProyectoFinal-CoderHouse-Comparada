@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    {% extends 'General/base.html' %}
+
+<body>
+    {% block base %}
+    {% load static %}
+
+    <div class="row">
+        {% for banner in banners %}
+            <div class="col-12 col-md-3 p-5 mt-3">
+                {% if banner.img_banner %}
+                    <img src='{{ banner.img_banner.url }}' class=" img-fluid border">
+                {% else %}
+                    <img src='{% static "img/default.png" %}' class=" img-fluid border">
+                {% endif %}
+                <h5 class="h5 text-right mt-3 mb-3">{{banner.banner}}</h5>
+                <h4 class="h5 text-right mt-3 mb-3">{{banner.title_banner}}</h4>
+                <h4 class="h5 text-right mt-3 mb-3">{{banner.sub_tittle_banner}}</h4>   
+                <h4 class="h5 text-right mt-3 mb-3">{{banner.text_banner}}</h4>  
+                <a href="/customize_page/delete_banner/{{banner.id}}" class="btn btn-success">Eliminar</a></p>                    
+            </div>
+        {% endfor %}   
+    </div>
+    {% endblock %}

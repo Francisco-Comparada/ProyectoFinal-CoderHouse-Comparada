@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% extends 'General/base.html' %}
+<body>
+{% block base %}
+    {% load static %}
+    <div class="container py-4">
+        <div class="row"> <ul class="list-unstyled templatemo-accordion">
+            <li class="pb-3">
+                <h3>Customize Page</h3>  
+                    <ul class="collapse show list-unstyled pl-3"></ul>
+                        <li><a href="/customize_page/create_banner/"><button type="button" class="btn btn-light">Crear Banner Start</button></a> </li>   
+                    <p></p>
+                    <ul class="collapse show list-unstyled pl-3"></ul>
+                        <li><a href="/customize_page/select_banner/"><button type="button" class="btn btn-light">Eliminar Banner Start</button></a> </li> 
+                    <p></p>
+                    <ul class="collapse show list-unstyled pl-3"></ul>
+                        <li><a href="/customize_page/create_Featured_Products/"><button type="button" class="btn btn-light">Crear Productos Destacados</button></a> </li>   
+                    <p></p>             
+                    <ul class="collapse show list-unstyled pl-3"></ul>
+                        <li><a href="/customize_page/select_Featured_Products/"><button type="button" class="btn btn-light">Eliminar Productos Destacados </button></a> </li>  
+                    <p></p>
+            </li>
+        </div>
+    </div>
+{% endblock %}
+</body>
+   

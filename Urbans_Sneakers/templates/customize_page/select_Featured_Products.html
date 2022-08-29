@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    {% extends 'General/base.html' %}
+
+<body>
+    {% block base %}
+    {% load static %}
+
+    <div class="row">
+        {% for product in products %}
+            <div class="col-12 col-md-3 p-5 mt-3">
+                
+                <h5 class="h5 text-right mt-3 mb-3">{{product.product}}</h5>
+                <a href="/customize_page/delete_Featured_Products/{{product.id}}" class="btn btn-success">Eliminar</a></p>                    
+            </div>
+        {% endfor %}   
+    </div>
+    {% endblock %}

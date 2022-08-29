@@ -16,7 +16,6 @@ def id_sub_category(request):
     }
 def id_product(request):
     id_product=Product.objects.all()
-    
     return{
         'id_product':id_product,
         

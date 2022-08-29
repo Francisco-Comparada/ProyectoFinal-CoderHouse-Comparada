@@ -15,61 +15,50 @@
             <li data-bs-target="#template-mo-zay-hero-carousel" data-bs-slide-to="2"></li>
         </ol>
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <div class="container">
-                    <div class="row p-5">
-                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="" src='{% static "img/apple_icon.png" %}' alt="">
-                        </div>
-                        <div class="col-lg-6 mb-0 d-flex align-items-center">
-                            <div class="text-align-left align-self-center">
-                                <h1 class="h1 text-success"><b>Urbans Sneaker</b></h1>
-                                <h3 class="h2"></h3>
-                                <p>
-                                   Somos una empresa dedicada a la venta de zapatillas unicas en el mercado 
-                                   <h6>By Francisco Comparada</h6>
-                                </p>
+
+            <!-- baner 1 -->
+            {% for banner in id_banner %}
+                {% if banner.banner == '1' %}
+                    <div class="carousel-item active">
+                        <div class="container">
+                            <div class="row p-5">
+                                <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                                    <img class="" src='{{ banner.img_banner.url }}' alt="">
+                                </div>
+                                <div class="col-lg-6 mb-0 d-flex align-items-center">
+                                    <div class="text-align-left align-self-center">
+                                        <h1 class="h1 text-success"><b>{{banner.title_banner}}</b></h1>
+                                        <h3 class="h2">{{banner.sub_tittle_banner}}</h3>
+                                        <p>
+                                            {{banner.text_banner}}
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="container">
-                    <div class="row p-5">
-                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="" src='{% static "img/Nike_Air_Jordan.png" %}' alt="">
-                        </div>
-                        <div class="col-lg-6 mb-0 d-flex align-items-center">
-                            <div class="text-align-left">
-                                <h1 class="h1">Nike Air Jordan</h1>
-                                <h3 class="h2">Michael Jordan</h3>
-                                <p>
-                                    Si hablamos de baloncesto, hay dos cosas que inmediatamente se nos pasan por la  Michael Jordan y su marca de zapatillas. De hecho, ya es casi imposible ver un partido de la NBA y no encontrar a alguien que lleve deportivas de Jordan, ya sea un jugador en la cancha o un aficionado en las gradas.
-                                </p>
+                {% else %}
+                    <div class="carousel-item">
+                        <div class="container">
+                            <div class="row p-5">
+                                <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
+                                    <img class="" src='{{ banner.img_banner.url }}' alt="">
+                                </div>
+                                <div class="col-lg-6 mb-0 d-flex align-items-center">
+                                    <div class="text-align-left">
+                                        <h1 class="h1">{{banner.title_banner}}</h1>
+                                        <h3 class="h2">{{banner.sub_tittle_banner}}</h3>
+                                        <p>
+                                            {{banner.text_banner}}
+                                        </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <div class="container">
-                    <div class="row p-5">
-                        <div class="mx-auto col-md-8 col-lg-6 order-lg-last">
-                            <img class="" src='{% static "img/Nike_Air_Force.png" %}' alt="">
-                        </div>
-                        <div class="col-lg-6 mb-0 d-flex align-items-center">
-                            <div class="text-align-left">
-                                <h1 class="h1">Nike Air Force 1</h1>
-                                <h3 class="h2">Las zapatillas más famosas de la historia</h3>
-                                <p>
-                                    Muchas veces hablamos de sneakers legendarias, pero en el caso de las AF1 no hay duda. Son todo un iconos del streetwear. De hecho, lo han sido desde los años 80, encabezando siempre los rankings de las zapatillas más vendidas y mejor valoradas. Sneakerheads, artistas, atletas, adultos y niños, ¡a todos les encantan!
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                {% endif %}
+            {% endfor %}
+            <!-- baner 1 -->
         </div>
         <a class="carousel-control-prev text-decoration-none w-auto ps-3" href="#template-mo-zay-hero-carousel" role="button" data-bs-slide="prev">
             <i class="fas fa-chevron-left"></i>
@@ -91,21 +80,25 @@
         
         <!-- modificar cambio a sub categoria hacer que el admin eliga que mostrar -->
         <div class="row">
-            {% if id_sub_category %}
-                {% for categoria in id_sub_category %}
-                    {% if categoria.img_sub_category %}
-                        <div class="col-12 col-md-4 p-5 mt-3">
-                            <a href="/Productos/Shop_Category/{{categoria.id}}"><img src='{{ categoria.img_sub_category.url }}' class="rounded-circle img-fluid border"></a>
-                            <h5 class="h5 text-center mt-3 mb-3">{{categoria.sub_category}}</h5>
-                            <p class="text-center"><a href="/Productos/Shop_Category/{{categoria.id}}" class="btn btn-success">Go Shop</a></p>
-                        </div>
-                    {% else %}
-                        <div class="col-12 col-md-4 p-5 mt-3">
-                            <a href="/Productos/Shop_Category/{{categoria.id}}"><img src='{% static "img/default.png" %}' class="rounded-circle img-fluid border"></a>
-                            <h5 class="h5 text-center mt-3 mb-3">{{categoria.sub_category}}</h5>
-                            <p class="text-center"><a href="/Productos/Shop_Category/{{categoria.id}}" class="btn btn-success">Go Shop</a></p>
-                        </div>
-                    {% endif %}
+            {% if id_featured_products %}
+                {% for featured_products in id_featured_products %}
+                    {% for product in id_product %}
+                        {% if featured_products.product == product.model %}
+                            {% if product.img %}
+                                <div class="col-12 col-md-4 p-5 mt-3">
+                                    <a href="/Productos/Shop_Category/{{product.id}}"><img src='{{ product.img.url }}' class="rounded-circle img-fluid border"></a>
+                                    <h5 class="h5 text-center mt-3 mb-3">{{product.model}}</h5>
+                                    <p class="text-center"><a href="/Productos/Shop_Category/{{product.id}}" class="btn btn-success">Go Shop</a></p>
+                                </div>
+                            {% else %}
+                                <div class="col-12 col-md-4 p-5 mt-3">
+                                    <a href="/Productos/Shop_Category/{{product.id}}"><img src='{% static "img/default.png" %}' class="rounded-circle img-fluid border"></a>
+                                    <h5 class="h5 text-center mt-3 mb-3">{{product.model}}</h5>
+                                    <p class="text-center"><a href="/Productos/Shop_Category/{{product.id}}" class="btn btn-success">Go Shop</a></p>
+                                </div>
+                            {% endif %}
+                        {% endif %}
+                    {% endfor %}     
                 {% endfor %}
             {% endif %}
             
