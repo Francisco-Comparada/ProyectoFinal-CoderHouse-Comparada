@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-z1o(q=(rm!k_=ozidmos-whjm#emllmeq7#@xmb$@4-ayfea43'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -55,7 +55,6 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'Urbans_Sneakers.urls'
@@ -139,11 +138,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = ( os.path.join(BASE_DIR,'static'),)
-STATIC_ROOT= os.path.join(BASE_DIR,'staticfiles')
-STATIC_TMP=os.path.join(BASE_DIR,'static')
-
-os.makedirs(STATIC_TMP,exist_ok=True)
-os.makedirs(STATIC_ROOT,exist_ok=True)
 
 
 #para poder ver las imagenes con url
@@ -165,6 +159,3 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'urbanssneakers22@gmail.com'
 EMAIL_HOST_PASSWORD = 'aisdklypmtnhrnsw'
 EMAIL_PORT = 587
-
-
-STATICFILES_STORAG = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
