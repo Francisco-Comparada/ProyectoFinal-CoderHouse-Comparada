@@ -27,5 +27,5 @@ urlpatterns = [
     path('customize_page/', include('customize_page.urls')),
     path('Orders/', include('Orders.urls')),
 
-] + static(settings.STATIC_URL,document_root=settings.STATIC_ROOT)
+]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
