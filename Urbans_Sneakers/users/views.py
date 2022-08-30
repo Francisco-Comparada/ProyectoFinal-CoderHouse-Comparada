@@ -52,6 +52,8 @@ def create_profile(request):
         if form.is_valid():
                 User_profile.objects.create(
                     user=user_,
+                    first_name=form.cleaned_data['first_name'],
+                    last_name=form.cleaned_data['last_name'],
                     phone=form.cleaned_data['phone'],
                     address = form.cleaned_data['address'],
                     image = form.cleaned_data['image'],
@@ -70,6 +72,8 @@ def edit_profile(request):
         user_=User.objects.get(username=request.user)
         edituser=User_profile.objects.get(user=user_)
         if form.is_valid():
+            edituser.first_name = form.cleaned_data['first_name']
+            edituser.last_name = form.cleaned_data['last_name']
             edituser.phone = form.cleaned_data['phone']
             edituser.address = form.cleaned_data['address']
             if form.cleaned_data['image']:
@@ -81,6 +85,8 @@ def edit_profile(request):
 
         form = User_edit_form(initial={
                                     'user':request.user.username,  
+                                    'first_name':request.user.profile.first_name, 
+                                    'last_name':request.user.profile.last_name, 
                                     'phone':request.user.profile.phone, 
                                     'address':request.user.profile.address, 
                                     'image':request.user.profile.image,                                                              

@@ -1,22 +1,48 @@
 {% extends 'General/base.html' %}
 
 {% block base %}
-
-<h3>{{ request.user.username }}</h3>
-<h3>{{ request.user.email }}</h3>
-{% if request.user.profile %}
-<h3>{{user.profile.phone}}</h3>
-<h3>{{user.profile.address}}</h3>
-<img src="{{user.profile.image.url}}" alt="">
-
-<a href="/users/edit_profile/"><button type="button" class="btn btn-success btn-lg btn-block">
-    Editar Perfilaa
-  </button></a>
-{% else %}
-<a href="/users/create_profile/"><button type="button" class="btn btn-success btn-lg btn-block">
-    Editar Perfil
-  </button></a>
-
-{%endif%}
+{% load static %}
+<div class="container mt-4 mb-4 p-3 d-flex justify-content-center"> 
+  <div class="card p-4"> 
+    <div class=" image d-flex flex-column justify-content-center align-items-center">
+      {% if user.profile.image %}
+        <img class="rounded-circle mt-5" src="{{user.profile.image.url}}" height="300" width="300" />
+      {% else %}
+        <img class="rounded-circle mt-5" src='{% static "img/default.png" %}'height="300" width="300" />
+      {% endif %}
+       <span class="name mt-3">Nombre de usuario: {{ request.user.username }}</span> 
+       <span class="idd">Correo electronico: {{ request.user.email }}</span> 
+        <div class="d-flex flex-row justify-content-center align-items-center mt-3">
+        
+          
+           <span class="number">Tel: {{user.profile.phone}}</span>
+         </div>
+         <div class="d-flex flex-row justify-content-center align-items-center mt-3">
+          <span class="number">Nombre: {{user.profile.first_name}} {{user.profile.last_name}}</span>
+        </div>
+        
+         <div class="d-flex flex-row justify-content-center align-items-center mt-3">
+          <span class="number">Direccion: {{user.profile.address}}
+           </span>
+        </div>
+        {% if request.user.profile %}
+        <div class=" d-flex mt-2"> 
+          <a href="/users/edit_profile/">
+        <button class="btn1 btn-dark">Editar Perfil</button> 
+      </a>
+        </div>
+      {% else %}
+          <div class=" d-flex mt-2"> 
+            <a href="/users/create_profile/">
+          <button class="btn1 btn-dark">Editar Perfil</button> 
+        </a>
+        </div> 
+        {% endif %}
+               <!-- <div class=" px-2 rounded mt-4 date ">
+                 <span class="join">Joined May,2021</span>
+                </div>  -->
+        </div> 
+    </div>
+  </div>
 
 {% endblock %}

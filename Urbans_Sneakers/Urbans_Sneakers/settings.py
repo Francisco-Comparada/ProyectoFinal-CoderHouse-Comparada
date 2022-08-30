@@ -150,10 +150,11 @@ MEDIA_URL='media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'users/login/'
+LOGOUT_REDIRECT_URL = "/"
 
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'urbanssneakers22@gmail.com'
-EMAIL_HOST_PASSWORD = 'tlszhexdktvlhlkk'
+EMAIL_HOST_PASSWORD = 'aisdklypmtnhrnsw'
 EMAIL_PORT = 587

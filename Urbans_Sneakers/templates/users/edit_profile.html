@@ -1,20 +1,69 @@
 {% extends 'General/base.html' %}
 
 {% block base %}
+{% load static %}
 
 <form action="" method="POST" enctype="multipart/form-data">
 {% csrf_token %}
     <table>
-        {{form.as_table}}
+        
     </table>
+    <div class="container rounded bg-white mt-5 mb-5">
+        <div class="row">
+            <div class="col-md-3 border-right">
+                {% if user.profile.image %}
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="{{ user.profile.image.url}}">
+                    
+                    <span class="font-weight-bold"> {{request.user.username}}</span>
+                    <span class="text-black-50">{{request.user.email}}</span>
+                </div>
+              {% else %}
+             
+                <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="{% static 'img/default.png' %}">
+                    
+                    <span class="font-weight-bold">{{request.user.username}}</span>
+                    <span class="text-black-50">{{request.user.email}}</span>
+                    
+                    </div>
+              {% endif %}
 
-    <p><input type="submit" value="Actualizar perfil"></p>
+            </div>
+            <div class="col-md-5 border-right">
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h4 class="text-right">Editar perfil</h4>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-6"><label class="labels">Nombre</label><input type="text" class="form-control" placeholder="Nombre" value="{{ user.profile.first_name}}" name="{{ form.first_name.name }}"></div>
+                        <div class="col-md-6"><label class="labels">Apellido</label><input type="text" class="form-control" value="{{ user.profile.last_name}}" name="{{ form.last_name.name }}" placeholder="Apellido"></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label  class="labels">Numero de telefono</label><input  type='text' class="form-control" placeholder="enter phone number" value="{{ user.profile.phone}}" name="{{ form.phone.name }}" ></div>
+                        
+                        <div class="col-md-12"><label  class="labels">Direccion</label><input type="text" class="form-control" placeholder="enter address" value="{{ user.profile.address}}"  name="{{ form.address.name }}"></div>
+                    </div>
+                    <div class="row mt-3">
+                        <div class="col-md-12"><label  class="labels">Imagen de perfil</label><input type="file"name="{{ form.image.name }}"></div> 
+                    </div>
+
+                    <div class="mt-5 text-center">
+                        <a href="/users/profile/"><button type="button" class="btn btn-success" >Cancelar</button>
+                        <button class="btn btn-success" type="submit" >Guardar perfil</button>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+  
 
     </form>
 
     {% if error %}
         <p style="color:red;">{{error}}</p>
     {% endif %}
-
 
 {% endblock %}
