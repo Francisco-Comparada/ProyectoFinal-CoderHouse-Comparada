@@ -2,6 +2,7 @@ asgiref==3.4.1
 beautifulsoup4==4.11.1
 distlib==0.3.5
 dj-database-url==1.0.0
+Django==3.9.0
 django-bootstrap-v5==1.0.11
 django-default-imagefield==0.5.5
 django-jquery==3.1.0
@@ -14,4 +15,5 @@ soupsieve==2.3.2.post1
 sqlparse==0.4.2
 tzdata==2022.1
 virtualenv==20.15.1
+
 
