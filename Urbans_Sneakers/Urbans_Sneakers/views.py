@@ -15,6 +15,9 @@ def setting(request):
 def base(request):
     return render (request, 'General/base.html')
 
+def about(request):
+    return render (request, 'General/about.html')
+
 def customize_page(request):
     return render (request, 'General/customize_page.html')
     

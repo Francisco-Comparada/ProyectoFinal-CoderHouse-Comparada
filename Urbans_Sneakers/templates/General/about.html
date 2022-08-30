@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    {% extends 'General/base.html' %}
+
+    {% block base %}
+    {% load static %}
+    {% load bootstrap5 %}
+<body>
+    <section class="bg-success py-5">
+        <div class="container">
+            <div class="row align-items-center py-0">
+                <div class="col-md-8 text-white">
+                    <h1>Urbans Sneakers</h1>
+                    <p></p>
+                    <p>
+                        
+                        Urbans Sneakers surge de la idea de crear una página web programada con Python en Django como entrega de proyecto final del curso de Python realizado en CoderHouse. La cual es una página de estilo eCommerce, dedicada a la venta de zapatillas únicas.
+                        <p><br></p>
+                        <h4>Sobre mi</h4>
+                        <p>Yo, Francisco Comparada creador y desarrollador de Urbans Sneakers. <br>
+                            Actual estudiante de la carrera Ingeniería Electrónica y desarrollo web.  <br>
+                            Desarrolle tanto el Backend de esta página web utilizando el lenguaje Python con el framework Django, así como su Frontend basándome en una plantilla con CSS, JS y Html.
+
+
+                    
+                    </p>
+                    </p>
+                </div>
+                <div class="col-md-2">
+                    <img class="rounded-circle  border" src='{% static "img/about.png" %}' width="350" height="" alt="About Hero">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Close Banner -->
+
+
+
+    
+
+</body>
+{% endblock %}
+</html>

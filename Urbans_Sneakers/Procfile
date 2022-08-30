@@ -1,0 +1,1 @@
+web: gunicorn Urbans_Sneakers.wsgi --log-file -

@@ -8,7 +8,6 @@ Productos:
     -armar mejor el mail de la app pedido (se puede dejar asi si sobra tiempo se hace )
 
 Pagina
-    -custom_page mejor visual 
     -organizar mejor por carpeta los html
      
 Extra si llego
