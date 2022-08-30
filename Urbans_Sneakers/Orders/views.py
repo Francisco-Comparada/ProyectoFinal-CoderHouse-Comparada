@@ -1,5 +1,3 @@
-from itertools import product
-from urllib import request
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 
@@ -11,7 +9,10 @@ from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.core.mail import send_mail
 
-@login_required(login_url='/User/login')
+
+
+
+@login_required(login_url='/users/login')
 def process_order(request):
     order=Order.objects.create(user=request.user)
     cart=Cart(request)
@@ -41,6 +42,9 @@ def process_order(request):
 
     return redirect('cart:clean_cart')
 
+
+
+@login_required(login_url='/users/login')
 def send_mail_(**kwargs):
     subject='Gracias por el pedido Urbans Sneakers'
     

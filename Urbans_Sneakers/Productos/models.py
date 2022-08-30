@@ -8,12 +8,17 @@ class Category(models.Model):
     def __str__(self):
         return self.category
 
+
+
+
 class Sub_Category(models.Model):
     category=models.ForeignKey('Category',on_delete=models.CASCADE,null=True)
     sub_category=models.CharField(max_length=75)
     img_sub_category=models.ImageField(upload_to='img_sub_Category/',blank=True)
     def __str__(self):
         return self.sub_category
+
+
 
 
 class Product(models.Model):

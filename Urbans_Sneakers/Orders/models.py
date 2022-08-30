@@ -6,7 +6,10 @@ from django.db.models import F,Sum, FloatField
 
 User=get_user_model()
 
+
+
 class Order(models.Model):
+
     user=models.ForeignKey(User, on_delete=models.CASCADE)
     created_id=models.DateTimeField(auto_now_add=True)
 
@@ -14,6 +17,7 @@ class Order(models.Model):
         return self.id
 
     @property
+
     def total(self):
         return self.orders_line_set.aggregate(
             total=Sum(F('price')*F('cant'),out_field=FloatField)
@@ -26,7 +30,11 @@ class Order(models.Model):
         verbose_name_plural='orders'
         ordering=['id']
 
+
+
+
 class Order_line (models.Model):
+    
     user=models.ForeignKey(User, on_delete=models.CASCADE)
     product=models.ForeignKey(Product, on_delete=models.CASCADE)
     order=models.ForeignKey(Order, on_delete=models.CASCADE)

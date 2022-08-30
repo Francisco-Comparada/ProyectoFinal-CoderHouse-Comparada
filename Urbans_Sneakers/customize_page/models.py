@@ -1,5 +1,6 @@
 from django.db import models
-from Productos.models import Product
+
+
     
 class Start_Banner(models.Model):
     banner=models.CharField(max_length=20)

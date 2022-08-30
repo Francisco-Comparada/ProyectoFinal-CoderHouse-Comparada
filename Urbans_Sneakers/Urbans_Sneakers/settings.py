@@ -78,8 +78,6 @@ TEMPLATES = [
                 'customize_page.context_processors.id_banner',
                 'customize_page.context_processors.id_featured_products'
                 
-                
-
             ],
         },
     },
@@ -91,6 +89,7 @@ WSGI_APPLICATION = 'Urbans_Sneakers.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+#base de datos PostgreSQL
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -152,6 +151,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'users/login/'
 LOGOUT_REDIRECT_URL = "/"
 
+
+# esto es para el mail se cambia contraseña cuando cada vez que subo a git 
 EMAIL_BACKEND='django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'

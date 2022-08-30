@@ -5,6 +5,7 @@
 <form action="" method="POST" enctype="multipart/form-data">
 {% csrf_token %}
     <table>
+        <h3>Se recomienda poner solo 3 banner para una mejor estetica</h3>
         {{form.as_table}}
     </table>
     <p><input type="submit" value="Enviar"></p>

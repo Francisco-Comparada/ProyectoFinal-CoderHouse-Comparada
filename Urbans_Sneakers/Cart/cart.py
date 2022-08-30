@@ -1,5 +1,3 @@
-
-
 class Cart:
     def __init__(self, request):
         self.request=request
@@ -8,6 +6,8 @@ class Cart:
         if not cart:
             cart=self.session['cart']={}
         self.cart=cart
+
+
 
 
     def add (self, product):
@@ -32,15 +32,21 @@ class Cart:
                         break
         self.save_cart()
 
+
+
     def save_cart(self):
         self.session['cart']=self.cart
         self.session.modified=True
+
+
 
     def delete(self,product):
         product.id=str(product.id)
         if product.id in self.cart:
             del self.cart[product.id]
             self.save_cart()
+
+
 
     def subtract(self, product):
         for key, value in self.cart.items():
@@ -51,6 +57,8 @@ class Cart:
                     self.delete(product)
                 break
         self.save_cart()
+
+
 
     def clean_cart(self):
         cart=self.session['cart']={}

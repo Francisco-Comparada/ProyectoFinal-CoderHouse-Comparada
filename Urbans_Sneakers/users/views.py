@@ -1,14 +1,14 @@
 
-from cProfile import Profile
 from django.shortcuts import render,redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from users.forms import User_registration_form,User_edit_form
-from django.http import HttpResponse
 from users.models import User_profile
 from django.contrib.auth.models import User
 
-def login_request(request):
+
+
+def login_request(request):#inicio de sesion
     if request.method == 'POST':
         form = AuthenticationForm(request=request, data=request.POST)
         if form.is_valid():
@@ -29,7 +29,8 @@ def login_request(request):
         form = AuthenticationForm()
     return render(request, 'users/login.html', {'form': form})
 
-def register(request):
+
+def register(request):#registro 
     if request.method == 'POST':
         form = User_registration_form(request.POST)
         if form.is_valid():
@@ -45,7 +46,8 @@ def register(request):
         form = User_registration_form()
         return render(request, 'users/register.html', {'form': form})
 
-def create_profile(request):
+
+def create_profile(request):#crea el perfil por primera vez
     if request.method == 'POST':
         form = User_edit_form(request.POST,request.FILES)
         user_=User.objects.get(username=request.user)
@@ -66,7 +68,8 @@ def create_profile(request):
         context = {'form':form}
     return render(request, 'users/create_profile.html', context=context)
 
-def edit_profile(request):
+
+def edit_profile(request):#edita el perfil
     if request.method == 'POST':
         form = User_edit_form(request.POST,request.FILES)
         user_=User.objects.get(username=request.user)
@@ -96,7 +99,7 @@ def edit_profile(request):
     return render(request, 'users/edit_profile.html', context=context)
 
 
-def profile(request):
+def profile(request):#muestra los datos del perfil
     user_=User.objects.get(username=request.user)
     profile = User_profile.objects.filter(user_id=user_) 
     context = {

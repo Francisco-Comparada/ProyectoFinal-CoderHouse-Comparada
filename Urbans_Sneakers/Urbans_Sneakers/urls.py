@@ -16,13 +16,11 @@ urlpatterns = [
     path('base/',base),
     path('customize_page/',customize_page),
 
+
     path('users/', include('users.urls')),
-
     path('Productos/', include('Productos.urls')),
-
     path('Cart/', include('Cart.urls')),
     path('customize_page/', include('customize_page.urls')),
-
     path('Orders/', include('Orders.urls')),
 
 ]

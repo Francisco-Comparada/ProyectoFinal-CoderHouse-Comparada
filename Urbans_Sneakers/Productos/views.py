@@ -7,10 +7,14 @@ from Productos.forms import Formulario_Product,Formulario_Create_Category,Formul
 from Productos.models import Product,Category,Sub_Category
 from django.contrib.auth.decorators import login_required
 import os
-#------Products------------
+
+
 #------superuser-------
-@login_required(login_url='/User/login')
-def create_product(request):
+
+
+
+@login_required(login_url='/users/login')
+def create_product(request):#añadir nuevo producto
     if request.user.is_superuser:
         if request.method == 'POST':
             form = Formulario_Product(request.POST, request.FILES)
@@ -34,10 +38,11 @@ def create_product(request):
             context = {'form':form}
             return render(request, 'Productos/create_product.html', context=context)
     else:
-         return redirect('/')
+        return redirect('/users/login')
 
-@login_required(login_url='/User/login')
-def delete_product(request, pk):
+
+@login_required(login_url='/users/login')
+def delete_product(request, pk):#eliminar producto
     if request.user.is_superuser:
         if request.method == 'GET':
             product = Product.objects.get(pk=pk)
@@ -48,10 +53,11 @@ def delete_product(request, pk):
             product.delete()
             return redirect('/setting')
     else:
-        return redirect('/')
+        return redirect('/users/login')
 
-@login_required(login_url='/User/login')
-def update_product(request, pk):
+
+@login_required(login_url='/users/login')
+def update_product(request, pk):#editar producto
     if request.user.is_superuser:
         if request.method == 'POST':
             product = Product.objects.get(id=pk)
@@ -89,10 +95,13 @@ def update_product(request, pk):
         context = {'form':form}
         return render(request, 'Productos/update_product.html', context=context)
     else:
-        return redirect('/')
+        return redirect('/users/login')
 
-@login_required(login_url='/User/login')
-def create_category(request):
+
+
+
+@login_required(login_url='/users/login')
+def create_category(request):#crear nueva categoria
     if request.user.is_superuser:
         if request.method == 'POST':
             form = Formulario_Create_Category(request.POST, request.FILES)
@@ -109,10 +118,11 @@ def create_category(request):
             context = {'form':form}
             return render(request, 'Productos/create_Category.html', context=context)
     else:
-         return redirect('/')
+         return redirect('/users/login')
 
-@login_required(login_url='/User/login')
-def delete_category(request, pk):
+
+@login_required(login_url='/users/login')
+def delete_category(request, pk):#eliminar categoria
     if request.user.is_superuser:
         if request.method == 'GET':
             category = Category.objects.get(pk=pk)
@@ -123,10 +133,11 @@ def delete_category(request, pk):
             category.delete()
             return redirect('/setting')
     else:
-        return redirect('/')
+        return redirect('/users/login')
 
-@login_required(login_url='/User/login')
-def update_category(request, pk):
+
+@login_required(login_url='/users/login')
+def update_category(request, pk):#editar categoria
     if request.user.is_superuser:
         if request.method == 'POST':
             category = Category.objects.get(id=pk)
@@ -144,15 +155,19 @@ def update_category(request, pk):
         context = {'form':form}
         return render(request, 'Productos/update_category.html', context=context)
     else:
-        return redirect('/')
+        return redirect('/users/login')
 
-@login_required(login_url='/User/login')
-def select_category(request):
+
+@login_required(login_url='/users/login')
+def select_category(request):#seleccionar categoria para editar o eliminar
     if request.user.is_superuser:
         return render (request, 'Productos/select_category.html')
+    else:
+        return redirect('/users/login')
 
-@login_required(login_url='/User/login')
-def descripcion_category(request, pk):
+
+@login_required(login_url='/users/login')
+def descripcion_category(request, pk):#muestra la categoria y oton para eliminar o editar
     if request.user.is_superuser:
         if request.method == 'GET':
             category = Category.objects.get(pk=pk)
@@ -161,9 +176,15 @@ def descripcion_category(request, pk):
         elif request.method == 'POST':
             category = Category.objects.get(pk=pk)
             return redirect('Productos/select_category.html')
+    else:
+        return redirect('/users/login')
 
-@login_required(login_url='/User/login')
-def create_sub_category(request):
+
+
+
+
+@login_required(login_url='/users/login')
+def create_sub_category(request):# crear nueva sub subcategoria
     if request.user.is_superuser:
         if request.method == 'POST':
             form = Formulario_Create_Sub_Category(request.POST, request.FILES)
@@ -180,10 +201,11 @@ def create_sub_category(request):
             context = {'form':form}
             return render(request, 'Productos/create_sub_category.html', context=context)
     else:
-         return redirect('/')
+        return redirect('/users/login')
 
-@login_required(login_url='/User/login')
-def delete_sub_category(request, pk):
+
+@login_required(login_url='/users/login')
+def delete_sub_category(request, pk):#eliminar subcategoria
     if request.user.is_superuser:
         if request.method == 'GET':
             sub_category = Sub_Category.objects.get(pk=pk)
@@ -194,10 +216,11 @@ def delete_sub_category(request, pk):
             sub_category.delete()
             return redirect('/setting')
     else:
-        return redirect('/')
+        return redirect('/users/login')
 
-@login_required(login_url='/User/login')
-def update_sub_category(request, pk):
+
+@login_required(login_url='/users/login')
+def update_sub_category(request, pk):#editar subcategoria
     if request.user.is_superuser:
         if request.method == 'POST':
             sub_category = Sub_Category.objects.get(id=pk)
@@ -221,17 +244,20 @@ def update_sub_category(request, pk):
                                                              'img_sub_category':sub_category.img_sub_category
                                                             })
         context = {'form':form}
-        return render(request, 'Productos/update_sub_category.html', context=context)
     else:
-        return redirect('/')
+        return redirect('/users/login')
 
-@login_required(login_url='/User/login')
-def select_sub_category(request):
+
+@login_required(login_url='/users/login')
+def select_sub_category(request):#seleccionar subcategoria para editar o eliminar
     if request.user.is_superuser:
         return render (request, 'Productos/select_sub_category.html')
+    else:
+        return redirect('/users/login')
 
-@login_required(login_url='/User/login')
-def descripcion_sub_category(request, pk):
+
+@login_required(login_url='/users/login')
+def descripcion_sub_category(request, pk):#muestra la subcategoria y oton para eliminar o editar
     if request.user.is_superuser:
         if request.method == 'GET':
             sub_category = Sub_Category.objects.get(pk=pk)
@@ -240,14 +266,22 @@ def descripcion_sub_category(request, pk):
         elif request.method == 'POST':
             sub_category = Sub_Category.objects.get(pk=pk)
             return redirect('Productos/select_sub_category.html')
+    else:
+        return redirect('/users/login')
 
-@login_required(login_url='/User/login')
-def filter_products(request):
+
+
+
+@login_required(login_url='/users/login')
+def filter_products(request):#muestra opciones de como filtrar productos para editar o eliminr 
     if request.user.is_superuser:
         return render (request, 'Productos/filter_products.html')
+    else:
+        return redirect('/users/login')
 
-@login_required(login_url='/User/login')
-def filter_Category(request, pk):
+
+@login_required(login_url='/users/login')
+def filter_Category(request, pk):# Busqueda por categoria para editar o eliminar en vista descripcion_product
     if request.user.is_superuser: 
         if request.method == 'GET':
             category_id = Category.objects.filter(pk=pk)
@@ -258,9 +292,12 @@ def filter_Category(request, pk):
                 'products_id':products_id
             }
             return render(request, 'Productos/filter_Category.html', context=context)
+    else:
+        return redirect('/users/login')
 
-@login_required(login_url='/User/login')
-def filter_sub_Category(request, pk):
+
+@login_required(login_url='/users/login')
+def filter_sub_Category(request, pk):# Busqueda por subcategoria para editar o eliminar en vista descripcion_product 
     if request.user.is_superuser:
         if request.method == 'GET':
             sub_category_id = Sub_Category.objects.filter(pk=pk)
@@ -271,8 +308,11 @@ def filter_sub_Category(request, pk):
                 'products_id':products_id
             }
             return render(request, 'Productos/filter_sub_Category.html', context=context)
+    else:
+        return redirect('/users/login')
 
-@login_required(login_url='/User/login')
+
+@login_required(login_url='/users/login')
 def filter_search_products(request):#Busqueda de productos por nombre/modelo
     if request.user.is_superuser:
         search = request.GET['search']
@@ -281,8 +321,11 @@ def filter_search_products(request):#Busqueda de productos por nombre/modelo
             'products': products
         }
         return render(request, 'Productos/filter_search_products.html', context=context)
+    else:
+        return redirect('/users/login')
 
-@login_required(login_url='/User/login')
+        
+@login_required(login_url='/users/login')
 def descripcion_product(request, pk):#muestra detalles de cada producto para editar o eliminar
     if request.user.is_superuser:
         if request.method == 'GET':
@@ -293,15 +336,22 @@ def descripcion_product(request, pk):#muestra detalles de cada producto para edi
         elif request.method == 'POST':
             product = Product.objects.get(pk=pk)
             return redirect('Productos/filter_products.html')
+    else:
+        return redirect('/users/login')
 
-@login_required(login_url='/User/login')
-def filter_list_products(request):
+
+@login_required(login_url='/users/login')
+def filter_list_products(request):#muestra todos los productos para editar o eliminar en vista descripcion_product
     if request.user.is_superuser:
             products = Product.objects.all() #Trae todos
             context = {
                 'products':products
             }
             return render(request, 'Productos/filter_list_products.html', context=context)
+    else:
+        return redirect('/users/login')
+
+
 #------superuser-------
 
 
@@ -318,6 +368,7 @@ def Shop_single(request, pk):#muestra detalles de cada producto
         product = Product.objects.get(pk=pk)
         return redirect('Productos/shop.html')
 
+
 def search_products(request):#Busqueda de productos por nombe/modelo
     search = request.GET['search']
     products =Product.objects.filter(model__icontains=search)
@@ -325,6 +376,7 @@ def search_products(request):#Busqueda de productos por nombe/modelo
         'products': products
     }
     return render(request, 'Productos/search_products.html', context=context)
+
 
 def Shop_Category(request, pk):#Shop vista categoria
     if request.method == 'GET':
@@ -336,7 +388,8 @@ def Shop_Category(request, pk):#Shop vista categoria
             'products_id':products_id
         }
         return render(request, 'Productos/Shop_Category.html', context=context)
-        
+
+
 def Shop_sub_Category(request, pk):#Shop vista por sub_categoria
     if request.method == 'GET':
         sub_category_id = Sub_Category.objects.filter(pk=pk)

@@ -1,15 +1,19 @@
-from tkinter import Widget
-from tkinter.tix import Select
 from django import forms
 from .models import Category, Sub_Category
 
 class Formulario_Create_Category(forms.Form):
     category=forms.CharField(max_length=75)
 
+
+
+
 class Formulario_Create_Sub_Category(forms.Form):
     category=forms.ModelChoiceField(label='Categoria', queryset=Category.objects.all())
     sub_category=forms.CharField(max_length=75)
     img_sub_category= forms.ImageField(required=False)
+
+
+
 
 class Formulario_Product(forms.Form):
     category=forms.ModelChoiceField(label='Categoria', queryset=Category.objects.all())

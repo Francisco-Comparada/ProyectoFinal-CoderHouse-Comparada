@@ -7,6 +7,8 @@ def id_category(request):
     return{
         'id_category':id_category,
     }
+
+
 def id_sub_category(request):
     id_sub_category=Sub_Category.objects.all()
     
@@ -14,6 +16,8 @@ def id_sub_category(request):
         'id_sub_category':id_sub_category,
         
     }
+
+    
 def id_product(request):
     id_product=Product.objects.all()
     return{
