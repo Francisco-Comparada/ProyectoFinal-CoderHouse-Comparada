@@ -29,13 +29,13 @@ def process_order(request):
         produ.save()
 
     Order_line.objects.bulk_create(order_line)
-
-    send_mail_(
+# des comentar para utilizar función de mail 
+    """ send_mail_(
         order=order,
         order_line=order_line,
         name_user=request.user.username,
         email_user=request.user.email,
-        )
+        ) """
 
     messages.success(request,'Pedido realizado con exito')
 

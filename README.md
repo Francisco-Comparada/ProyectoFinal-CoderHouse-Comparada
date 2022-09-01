@@ -33,12 +33,9 @@ Productos:
     -problemas con el mail es por google 
     -armar mejor el mail de la app pedido (se puede dejar asi si sobra tiempo se hace )
 
-Pagina
-    -organizar mejor por carpeta los html
+
      
 Extra si llego
     -subir a un servidor 
 
-Limpiar codigo 
-    - escribir todo en ingles(importante) 
     

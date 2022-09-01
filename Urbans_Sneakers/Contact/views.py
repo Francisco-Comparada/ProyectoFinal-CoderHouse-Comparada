@@ -12,15 +12,15 @@ def contact(request):
             subject=request.POST.get('subject')
             message=request.POST.get('message')
 
-
+            #en la linea ['urbanssneakers22@gmail.com'] debremos de poner el mail que pusimos en el settings
             email=EmailMessage(subject,'El usuario {} mail {} mensaje: \n\n {} '.format(name,email,message),
             email,['urbanssneakers22@gmail.com'],reply_to=[email])
-             
-            try:
+             # descomentar para utilizar funcion de mail 
+            """ try:
                 email.send()
                 return redirect('/Contact/contact/?valido')
             except:
-                return redirect('/Contact/contact/?novalido')
+                return redirect('/Contact/contact/?novalido') """
 
            
 

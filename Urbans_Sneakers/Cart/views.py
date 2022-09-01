@@ -18,7 +18,7 @@ def add_product(request,pk):
     cart=Cart(request)
     product=Product.objects.get(id=pk)
     cart.add(product=product)
-    return redirect ('/Cart/cart')
+    return redirect ('/Productos/Shop_single/%d/?valido'%pk)
 
 
 

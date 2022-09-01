@@ -185,12 +185,29 @@
                                     
                                     {% if product.stock > 0 %}
                                     <div class="col d-grid">
+                                        {% if "valido" in request.GET %}
+                                                <h4>Product added correctly</h4>
+                                                <a href="/Cart/cart/">
+                                                    <button type="button" class="btn btn-success btn-lg "
+                                                        title="Remove cart" >
+                                                        Go to cart
+                                                    </button>
+                                                </a>
+                                                <p></p>
+                                                <a href="/shop/">
+                                                    <button type="button" class="btn btn-success btn-lg "
+                                                        title="Remove cart" >
+                                                        Return to the store
+                                                    </button>
+                                                </a>
+                                                {% else %}
                                         <a href="{% url 'cart:add_product' product.id %}">
                                             <button type="button" class="btn btn-success btn-lg "
                                                 title="Remove cart" >
                                                 Add to cart
                                             </button>
                                         </a>
+                                        {% endif %}
                                     </div>
                                     {% else %}
                                     <div class="col d-grid">
