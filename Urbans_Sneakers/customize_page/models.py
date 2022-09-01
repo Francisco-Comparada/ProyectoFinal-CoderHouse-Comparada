@@ -14,5 +14,5 @@ class Start_Banner(models.Model):
 
 
 class Featured_Products(models.Model):
-    n_product=models.CharField(max_length=2)
+   
     product=models.CharField(max_length=40)

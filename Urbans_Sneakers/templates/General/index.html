@@ -72,7 +72,8 @@
     <section class="container py-5">
         <div class="row text-center pt-3">
             <div class="col-lg-6 m-auto">
-                <h1 class="h1">Productos destacados</h1>
+                <h1 class="h1">
+                    Featured Products</h1>
                 <p>
                 </p>
             </div>
@@ -80,7 +81,7 @@
         
         <div class="row">
             {% if id_featured_products %}
-                {% for featured_products in id_featured_products %}
+                {% for featured_products in id_featured_products %} 
                     {% for product in id_product %}
                         {% if featured_products.product == product.model %}
                             {% if product.img %}
@@ -88,9 +89,9 @@
                                     <a href="/Productos/Shop_single/{{product.id}}"><img src='{{ product.img.url }}' class="rounded-circle img-fluid border"></a>
                                     <h5 class="h5 text-center mt-3 mb-3">{{product.model}}</h5>
                                     {% if product.stock > 0 %}
-                                    <p class="text-center"><a href="/Productos/Shop_single/{{product.id}}" class="btn btn-success">Ver producto</a></p>
+                                    <p class="text-center"><a href="/Productos/Shop_single/{{product.id}}" class="btn btn-success">To buy</a></p>
                                     {% else %}
-                                    <p class="text-center"><a href="/Productos/Shop_single/{{product.id}}" class="btn btn-success">Producto Agotado</a></p>
+                                    <p class="text-center"><a href="/Productos/Shop_single/{{product.id}}" class="btn btn-success">Sold out</a></p>
                                     {% endif %}
                                 </div>
                             {% else %}
@@ -98,7 +99,7 @@
                                     <a href="/Productos/Shop_single/{{product.id}}"><img src='{% static "img/default.png" %}' class="rounded-circle img-fluid border"></a>
                                     <h5 class="h5 text-center mt-3 mb-3">{{product.model}}</h5>
                                     {% if product.stock > 0 %}
-                                    <p class="text-center"><a href="/Productos/Shop_single/{{product.id}}" class="btn btn-success">Ver producto</a></p>
+                                    <p class="text-center"><a href="/Productos/Shop_single/{{product.id}}" class="btn btn-success">to buy</a></p>
                                     {% else %}
                                     <p class="text-center"><a href="/Productos/Shop_single/{{product.id}}" class="btn btn-success">Producto Agotado</a></p>
                                     {% endif %}
@@ -115,7 +116,7 @@
    <section class="bg-light py-5">
     <div class="row text-center pt-5 pb-3">
         <div class="col-lg-6 m-auto">
-            <h1 class="h1">Otros servicios</h1>
+            <h1 class="h1">Other services</h1>
             <p>
                
             </p>
@@ -125,28 +126,29 @@
         <div class="col-md-6 col-lg-3 pb-5">
             <div class="h-100 py-5 services-icon-wap shadow">
                 <div class="h1 text-success text-center"><i class="fa fa-truck fa-lg"></i></div>
-                <h2 class="h5 mt-4 text-center">Servicios de entrega</h2>
+                <h2 class="h5 mt-4 text-center">Delivery services</h2>
             </div>
         </div>
 
         <div class="col-md-6 col-lg-3 pb-5">
             <div class="h-100 py-5 services-icon-wap shadow">
                 <div class="h1 text-success text-center"><i class="fas fa-exchange-alt"></i></div>
-                <h2 class="h5 mt-4 text-center">Envío y devoluciones</h2>
+                <h2 class="h5 mt-4 text-center">Shipping & Returns</h2>
             </div>
         </div>
 
         <div class="col-md-6 col-lg-3 pb-5">
             <div class="h-100 py-5 services-icon-wap shadow">
                 <div class="h1 text-success text-center"><i class="fa fa-percent"></i></div>
-                <h2 class="h5 mt-4 text-center">Promociónes</h2>
+                <h2 class="h5 mt-4 text-center">Promotions</h2>
             </div>
         </div>
 
         <div class="col-md-6 col-lg-3 pb-5">
             <div class="h-100 py-5 services-icon-wap shadow">
                 <div class="h1 text-success text-center"><i class="fa fa-user"></i></div>
-                <h2 class="h5 mt-4 text-center">Servicio 24 Horas</h2>
+                <h2 class="h5 mt-4 text-center">
+                    24 hour service</h2>
             </div>
         </div>
     </div>

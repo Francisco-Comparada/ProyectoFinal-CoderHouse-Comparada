@@ -1,7 +1,7 @@
 
 from django.contrib import admin
 from django.urls import path,include
-from Urbans_Sneakers.views import index,shop,setting,base,customize_page,about 
+from Urbans_Sneakers.views import index,shop,setting,base,customize_page,about
 # para las imganes url
 from django.conf import settings
 from django.conf.urls.static import static
@@ -19,6 +19,7 @@ urlpatterns = [
     path('base/',base),
     path('about/',about),
     path('customize_page/',customize_page),
+    
 
 
     path('users/', include('users.urls')),
@@ -26,6 +27,7 @@ urlpatterns = [
     path('Cart/', include('Cart.urls')),
     path('customize_page/', include('customize_page.urls')),
     path('Orders/', include('Orders.urls')),
+    path('Contact/', include('Contact.urls')),
 
 ]
 urlpatterns += static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

@@ -11,7 +11,6 @@ from django.core.mail import send_mail
 
 
 
-
 @login_required(login_url='/users/login')
 def process_order(request):
     order=Order.objects.create(user=request.user)
@@ -44,7 +43,7 @@ def process_order(request):
 
 
 
-@login_required(login_url='/users/login')
+
 def send_mail_(**kwargs):
     subject='Gracias por el pedido Urbans Sneakers'
     
@@ -60,3 +59,17 @@ def send_mail_(**kwargs):
     to=kwargs.get('email_user')
 
     send_mail(subject,message_text,from_mail,[to],html_message=message)
+
+
+@login_required(login_url='/users/login')
+def order_list(request):
+        if request.user.is_superuser:
+            order_lists = Order_line.objects.all() #Trae todos
+            
+            context = {
+                'order_lists':order_lists
+            }
+            return render(request, 'Cart/order_list.html', context=context)
+        else:
+            return redirect('/users/login')
+

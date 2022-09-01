@@ -30,6 +30,7 @@ class Cart:
                         value['cant']=value['cant']+1
                         value['price']=float(value['price'])+product.price
                         break
+                    
         self.save_cart()
 
 

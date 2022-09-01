@@ -12,4 +12,4 @@ class Start_Banner_admin(admin.ModelAdmin):
 
 @admin.register(Featured_Products)
 class Featured_Products_admin(admin.ModelAdmin):
-    list_display = ['n_product','product']                    
+    list_display = ['product']                    

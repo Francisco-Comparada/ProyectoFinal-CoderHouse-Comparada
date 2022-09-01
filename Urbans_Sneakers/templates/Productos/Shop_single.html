@@ -116,7 +116,7 @@
                     <div class="card">
                         <div class="card-body">
                             <h1 class="h2">{{product.model}}</h1>
-                            <p class="h3 py-2">Precio: ${{product.price}}</p>
+                            <h4>Price: ${{product.price}}</h4>
                             <!-- <p class="py-2">
                                 <i class="fa fa-star text-warning"></i>
                                 <i class="fa fa-star text-warning"></i>
@@ -187,7 +187,8 @@
                                     <div class="col d-grid">
                                         <a href="{% url 'cart:add_product' product.id %}">
                                             <button type="button" class="btn btn-success btn-lg "
-                                                title="Remove cart" >Añadir al carrito
+                                                title="Remove cart" >
+                                                Add to cart
                                             </button>
                                         </a>
                                     </div>
@@ -195,7 +196,7 @@
                                     <div class="col d-grid">
                                         <a href="#">
                                             <button type="button" class="btn btn-success btn-lg "
-                                                title="Remove cart" >Producto Agotado 
+                                                title="Remove cart" >Sold out
                                             </button>
                                         </a>
                                     </div>

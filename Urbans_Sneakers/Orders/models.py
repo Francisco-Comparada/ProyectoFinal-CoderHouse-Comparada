@@ -14,7 +14,7 @@ class Order(models.Model):
     created_id=models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.id
+        return str(self.id)
 
     @property
 
@@ -42,7 +42,7 @@ class Order_line (models.Model):
     created_id=models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.cant} units of {self.product.model}'
+        return f'str{self.cant} units of {self.product.model}'
 
     class Meta:
             db_table='orders_line'
