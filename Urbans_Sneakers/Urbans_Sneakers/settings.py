@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #apps
     'Productos',
     'users',
     'bootstrap5',
@@ -71,6 +72,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # los context_processors los utilizamos para poder ver la informacion que necesitemos desde los templates 
+                # fueron decladaros en sus respectivas apps 
                 'Productos.context_processors.id_category',
                 'Productos.context_processors.id_sub_category',
                 'Productos.context_processors.id_product',
