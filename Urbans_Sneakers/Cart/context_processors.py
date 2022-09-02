@@ -7,6 +7,7 @@ def total_cart_amount(request):
         if 'cart' in request.session:
             for key,value in request.session['cart'].items():
                 total = total +(float(value['price']))
+    total= round(total,2)
     total=str(total)
     return{'total_cart_amount':total}
 
