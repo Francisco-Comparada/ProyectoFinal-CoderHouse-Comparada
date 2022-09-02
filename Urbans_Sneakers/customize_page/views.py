@@ -70,7 +70,6 @@ def create_Featured_Products(request):
             form = Form_Featured_Products(request.POST,request.FILES)
             if form.is_valid():
                     Featured_Products.objects.create(
-                        n_product=form.cleaned_data['n_product'],
                         product=form.cleaned_data['product'],
                     )
                     return redirect('/customize_page/')
