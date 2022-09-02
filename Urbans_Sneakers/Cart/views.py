@@ -20,6 +20,14 @@ def add_product(request,pk):
     cart.add(product=product)
     return redirect ('/Productos/Shop_single/%d/?valido'%pk)
 
+@login_required(login_url='/users/login')
+def add_product_cart(request,pk):
+    cart=Cart(request)
+    product=Product.objects.get(id=pk)
+    cart.add(product=product)
+    return redirect ('/Cart/cart')
+
+
 
 
 
