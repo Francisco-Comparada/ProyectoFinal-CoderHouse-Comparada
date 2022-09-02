@@ -5,7 +5,7 @@ Como proyecto final de cuso “Python” de CoderHouse, desarrolle una página w
 Urbans Sneakers, fue creada como una pagina web de estilo eCommerce en la cual se venderán artículos, siendo principalmente zapatillas únicas del mercado y sus accesorios. Pero se podía implementar con pequeños cambios para diversos tipos de negocios de vetas online.
 Nuestra pagina cuenta con dos vistas una para el o los administrados de ella y otra para los usuarios 
 
- link de la pagina http://urbanssneakers.pythonanywhere.com/
+link de la pagina http://urbanssneakers.pythonanywhere.com/
 
 
 Para los usuarios 
@@ -150,4 +150,4 @@ Errores cometidos:
     •	Escribir todo en inglés, me di cuenta tarde que mezclé idiomas 
     •	Haber documentado mejor los errores y soluciones 
 
-Francisco, Comparada creador y desarrolador 
+Francisco Comparada, creador y desarrolador 

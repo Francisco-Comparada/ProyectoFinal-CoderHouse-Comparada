@@ -29,6 +29,7 @@ class Cart:
                     else:
                         value['cant']=value['cant']+1
                         value['price']=float(value['price'])+product.price
+                        value['price']=round(value['price'],3)
                         break
                     
         self.save_cart()
@@ -54,6 +55,7 @@ class Cart:
             if key==str(product.id):
                 value['cant']=value['cant']-1
                 value['price']=float(value['price'])-product.price
+                value['price']=round(value['price'],3)
                 if value['cant']<1:
                     self.delete(product)
                 break
