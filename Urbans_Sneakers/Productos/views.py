@@ -142,18 +142,17 @@ def update_category(request, pk):#editar categoria
         if request.method == 'POST':
             category = Category.objects.get(id=pk)
             form = Formulario_Create_Category(request.POST,request.FILES)
-            
             if form.is_valid():
                 category.category = form.cleaned_data['category']
                 category.save()
                 return redirect('/setting')
 
         elif request.method == 'GET':
-            category = Product.objects.get(id=pk)
+            category = Category.objects.get(id=pk)
 
             form = Formulario_Create_Category(initial={'category':category.category,})
-        context = {'form':form}
-        return render(request, 'Productos/update_category.html', context=context)
+            context = {'form':form}
+            return render(request, 'Productos/update_category.html', context=context)
     else:
         return redirect('/users/login')
 
@@ -244,6 +243,7 @@ def update_sub_category(request, pk):#editar subcategoria
                                                              'img_sub_category':sub_category.img_sub_category
                                                             })
         context = {'form':form}
+        return render(request, 'Productos/update_sub_category.html', context=context)
     else:
         return redirect('/users/login')
 
