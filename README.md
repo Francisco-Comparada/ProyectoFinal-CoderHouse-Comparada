@@ -7,6 +7,8 @@ Nuestra pagina cuenta con dos vistas una para el o los administrados de ella y o
 
 link de la pagina http://urbanssneakers.pythonanywhere.com/
 
+link video de la pagina https://www.youtube.com/watch?v=Zlg7USSPqXk&ab_channel=FranciscoComparada
+
 
 Para los usuarios 
     •	Navbar: esta se encuentra en la parte superior de la página, tiene la particularidad que siempre estará presente en todas las paginas de nuestra web, en ella tendremos distintas opciones:
